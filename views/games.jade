@@ -1,0 +1,13 @@
+extends layout
+
+block socketio
+    script(src='/socket.io/socket.io.js')
+    script(src='/scripts/games.js')
+
+block content
+    #content
+        h2 Games:
+            &nbsp;[&nbsp;
+            a(href="/games/create") Create Game
+            &nbsp;]&nbsp;
+            #games

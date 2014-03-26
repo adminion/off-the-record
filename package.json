@@ -1,0 +1,30 @@
+{
+    "name": "off-the-record",
+    "description": "Let's talk off-the-record", 
+    "version": "0.0.1",
+    "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
+    "license": {
+        "type":     "BSD",
+        "file:":    "LICENSE"
+    },
+    "bin": "./off-the-record.sh",
+    "repository": {
+        "type": "git", 
+        "url": "git://github.com/adminion/adminion.git"
+    },
+    "dependencies": {
+        "cluster-fuck":             "*",
+        "connect-flash":            "*",
+        "connect-mongo":            "*",
+        "express":                  "*",
+        "jade":                     "*",
+        "mongoose":                 "*",
+        "passport":                 "*",
+        "passport-local":           "*",
+        "passport-local-mongoose":  "*",
+        "passport.socketio":        "*",
+        "socket.io":                "*",
+        "techjeffharris-utils":     "*", 
+        "voice.js":                 "*"
+    }
+}

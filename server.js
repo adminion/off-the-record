@@ -1,9 +1,4 @@
-Off-The-Record
-==============
 
-Secure, undocumented communication server
-
-```javascript
 var OffTheRecord = require('./lib/otr'),
     server;
 
@@ -14,4 +9,3 @@ server.on('ready', function () {
 });
 
 server.start();
-```

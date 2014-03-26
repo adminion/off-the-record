@@ -1,0 +1,16 @@
+{
+    "debug": false,
+    "cacheUpdateInterval": 300000, 
+    "host": "localhost", 
+    "https": true,
+    "cert": ".ssl/otr-cert.pem",
+    "key": ".ssl/otr-key.pem",
+    "mongodb": "mongodb://localhost/off-the-record",
+    "port": "1337",
+    "serverName": "Off-The-Record",
+    "session": {
+        "cookie": { "maxAge" : 18000000 }, 
+        "key": "off-the-record.sid",
+        "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
+    }
+}

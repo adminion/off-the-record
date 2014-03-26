@@ -1,0 +1,33 @@
+
+
+extends layout
+
+block content
+    #content
+        h2 #{request.game.playerOne.displayName}'s Game 
+            - if (request.game.status === 'lobby')
+                &nbsp;[&nbsp;
+                a(href='/games/' + request.game['_id'] + '/lobby') Join
+                &nbsp;]
+        table
+            tbody
+                - var names = ['status', 'start', 'config']
+                - var game = request.game.toObject()
+                each value, name in game
+                    - if (names.indexOf(name) > -1)
+                        tr
+                            td #{name}:
+                            - if (name === 'config')
+                                td
+                                    table
+                                        tbody
+                                            each value2, name2 in value
+                                                tr
+                                                    td #{name2}:
+                                                    td=value2
+                            else 
+                                td=value
+                - if (request.game.status === 'lobby')
+                    tr
+                        td Open Seats: 
+                        td=request.game.openSeats() 

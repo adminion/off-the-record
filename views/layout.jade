@@ -1,0 +1,66 @@
+doctype html
+html
+    head
+        // link(rel='stylesheet', href='/stylesheets/styles.css')
+        title= env.serverName
+        script(src='/scripts/jquery.js')
+
+        block head
+    body
+        #wrapper
+            block wrapper
+                #header
+                    block header
+                        block banner
+                            #banner
+                                h1=env.tagline
+                                // this would be a good place for a banner image
+                        block breadcrumbs
+                            #breadcrumbs
+                                // breadcrumbs leave a trail as players navigate the server
+                                h3
+                                    - // remove everything after and including the '?'
+                                    - var breadcrumbs = request.url.replace(/\?.*$/, '')
+                                    - // split the string by '/' into an array
+                                    - breadcrumbs = breadcrumbs.split('/')
+                                    - // for each item in the array
+                                    - each crumb, id in breadcrumbs
+                                        if (!id)
+                                            a(href='/') #{env.serverName}
+                                        else
+                                            if (!!crumb)
+                                                &nbsp;/&nbsp;
+                                                - var url = ''
+                                                - for (var i=1; i<=id   ; i++)
+                                                    - url += '/' + breadcrumbs[i]
+                                                    - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
+                                                a(href=url) #{crumb}
+                        block session
+                            #session
+                                if (request.session.passport.user)
+                                    span Logged on as 
+                                        a(href='/accounts/' + request.session.passport.user) #{request.session.passport.user}
+                                        &nbsp;[&nbsp;
+                                        a(href='/logoff') Logoff
+                                        &nbsp;]&nbsp;
+                                else
+                                    span Not logged on. 
+                                        [&nbsp; 
+                                        a(href='/logon') Logon 
+                                        &nbsp;|&nbsp;
+                                        a(href='/accounts/create') Sign-up
+                                        &nbsp;]
+                        block menu
+                            #menu
+                                if (links && request.session.passport.user)
+                                    label(for='links') 
+                                        h3 Player's Menu:
+                                    ul#links
+                                        each url, title in links
+                                            li: a(href=url) #{title}
+                #body
+                    block body
+                        block content
+                            #content
+                                    
+                                    
