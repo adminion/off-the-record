@@ -1,11 +1,10 @@
 
-var OffTheRecord = require('./lib/otr'),
-    server;
+var server = new require('./lib/otr')();
 
-server = new OffTheRecord();
+var debug = require('debug')(server.env.context());
 
 server.on('ready', function () {
-    console.log('off-the-record server is running!');
+    debug('off-the-record server is running!');
 });
 
 server.start();

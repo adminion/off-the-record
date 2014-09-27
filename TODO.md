@@ -1,0 +1,4 @@
+TODO
+====
+
+* write uninstall script 

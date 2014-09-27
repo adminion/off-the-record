@@ -7,13 +7,12 @@
         "type":     "BSD",
         "file:":    "LICENSE"
     },
-    "bin": "./off-the-record.sh",
     "repository": {
         "type": "git", 
         "url": "git://github.com/adminion/adminion.git"
     },
     "dependencies": {
-        "cluster-fuck":             "*",
+        "config":                   "*",
         "connect-flash":            "*",
         "connect-mongo":            "*",
         "express":                  "*",
@@ -26,5 +25,8 @@
         "socket.io":                "*",
         "techjeffharris-utils":     "*", 
         "voice.js":                 "*"
+    },
+    "devDependencies": {
+        "debug": "*"
     }
 }

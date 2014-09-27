@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # require root
-if [ $USER != "root" ]
-then 
-    echo "$0: error: must be root" && exit 2
-fi
+# if [ $USER != "root" ]
+# then 
+#     echo "$0: error: must be root" && exit 2
+# fi
 
 # if the length of $1 is not zero
 if [ $1 ]
@@ -13,7 +13,7 @@ then
     serverName=$1
 else
     # set serverName to default: "otr"
-    serverName="otr"
+    serverName="otrd"
 fi
 
 # ouput the server name to be used
