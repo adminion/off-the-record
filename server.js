@@ -3,6 +3,7 @@ var OffTheRecord = require('./lib/'),
     server,
     stopping;
 
+
 server = new OffTheRecord();
 
 var debug = require('debug')(server.env().context());

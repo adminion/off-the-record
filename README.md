@@ -56,10 +56,7 @@ You might want to define some custom configuration options in `config/production
 
 ```json
 {
-    "debug": false,
-    "cacheUpdateInterval": 300000, 
     "host": "localhost", 
-    "https": true,
     "cert": ".ssl/otrd-cert.pem",
     "key": ".ssl/otrd-key.pem",
     "mongodb": {
