@@ -62,8 +62,9 @@ sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
 start on started mongodb
 
 script
-    export NODE_ENV=production 
-    otrd | logger
+    export NODE_ENV='development'
+    cd $here 
+    ./off-the-record.sh \* | logger -t otrd
 end script
 EOF
 

@@ -1,6 +1,6 @@
 {
     "name": "off-the-record",
-    "description": "Let's talk off-the-record", 
+    "description": "Chat for the paranoid..", 
     "version": "0.0.1",
     "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
     "license": {
@@ -12,17 +12,24 @@
         "url": "git://github.com/adminion/adminion.git"
     },
     "dependencies": {
+        "body-parser":              "*",
+        "cookie-parser":            "*",
         "config":                   "*",
-        "connect-flash":            "*",
         "connect-mongo":            "*",
-        "express":                  "*",
+        "express":                  "4.x",
+        "express-session":          "*",
         "jade":                     "*",
-        "mongoose":                 "*",
+        "method-override":          "*",
+        "mongoose":                 "~3.8",
+        "mongoose-friends":         "*",
+        "morgan":                   "*",
         "passport":                 "*",
         "passport-local":           "*",
         "passport-local-mongoose":  "*",
         "passport.socketio":        "*",
+        "serve-static":             "*",
         "socket.io":                "*",
+        "serve-favicon":            "*",
         "techjeffharris-utils":     "*", 
         "voice.js":                 "*"
     },

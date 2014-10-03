@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	#content
+		h2 Register			
+
+		if (err)
+			p.err=err
+
+		form(action='/register', method='POST')
+			input(type='hidden', name='redir', value=redir)
+			table
+				tbody
+					tr
+						td: label(for='FirstName') First Name: 
+						td: input(type='text', name='firstName', id='FirstName')
+					tr
+						td: label(for='LastName') Last Name: 
+						td: input(type='text', name='lastName', id='LastName')
+					tr
+						td: label(for='email') Email:
+						td: input(type='text', name='email', id='email')
+					tr
+						td: label(for='password') Password: 
+						td: input(type='password', name='password', id='password')
+					// need to implement form validator to verify their passwords match
+					tr
+						td: label(for='verifyPassword') Verify Password: 
+						td: input(type='password', name='verifyPassword', id='verifyPassword')
+					tr
+						td: label(for='displayName') Display Name: 
+						td: input(type='text', name='displayName', id='displayName')
+			p
+				input(type='submit', value='Register')

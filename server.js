@@ -1,10 +1,23 @@
+var OffTheRecord = require('./lib/'),
+    interrupt,
+    server,
+    stopping;
 
-var server = new require('./lib/otr')();
+server = new OffTheRecord();
 
-var debug = require('debug')(server.env.context());
+var debug = require('debug')(server.env().context());
 
-server.on('ready', function () {
-    debug('off-the-record server is running!');
+process.on('SIGINT', function () {
+    if (interrupt && !stopping) {
+        stopping = true;
+        console.log('\nstopping server...');
+        server.stop(process.exit);
+    } else {
+        console.log('\n(^C again to quit)'); 
+        interrupt = setTimeout(function () {
+            interrupt = undefined;
+        }, 1000);
+    }
 });
 
 server.start();

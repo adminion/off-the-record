@@ -1,0 +1,19 @@
+extends layout
+
+block socketio
+    script(src="/socket.io/socket.io.js")
+    script(src='/scripts/off-the-record.js')
+    
+block content
+    #content
+        label(for="search") Search
+        input(id="search-input")
+        button(id="search-button") Search
+        h2 Friends:
+        ul#friends
+
+        h2 Friends of Friends:
+        ul#friends-of-friends
+
+        h2 Non-Friends:
+        ul#non-friends
