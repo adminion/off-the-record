@@ -3,9 +3,10 @@ Off-The-Record
 
 ## Chat for the paranoid.. 
 
-a boilerplate messaging app
-with strict privacy by default
-always hosted over https
+a boilerplate messaging app with strict privacy by default 
+
+always hosted over https, and all messags are volatile
+
 no message or file is persisted to any database, ever!
 
 ```javascript
