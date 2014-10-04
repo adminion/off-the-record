@@ -1,7 +1,7 @@
 Off-The-Record 
 ==============
 
-## Chat for the paranoid.. 
+# Chat for the paranoid.. 
 
 a boilerplate messaging app with strict privacy by default 
 
@@ -15,16 +15,16 @@ var OffTheRecord = require('./lib/'),
 
 server = new OffTheRecord();
 
-server.on('ready', function () {
+server.on('started', function () {
     console.log('off-the-record server is running!');
 });
 
 server.start();
 ```
 
-### installation
+## install
 
-Installation is a snap, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers).
+Clone the repo with git or download a copy then open a terminal, cd to that directory, then run `./setup.sh`.  You should not use sudo for the setup script, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers) as some internal commands within the setup script use sudo.
 
     $ git clone https://github.com/techjeffharris/off-the-record.git
     $ cd off-the-record/
@@ -44,13 +44,13 @@ Upon successful installation, setup will create and start an upstart job by the 
     off-the-record start/running, process 22709
     off-the-record server installed!
 
-### uninstallation
+## uninstall
 
 Uninstallation is just as easy as installation; however, you must also be a [sudoer](https://help.ubuntu.com/community/Sudoers).
 
-    $ .uninstall.sh
+    $ ./uninstall.sh
 
-### configuration
+## configure
 
 You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override the defaults:
 
@@ -78,5 +78,79 @@ You might want to define some custom configuration options in `config/production
 }
 ```
 _its recommended that you generate your own session secret!_
+
+
+## Server API
+
+### OffTheRecord
+Exposed by `require('./lib/')`, extends nodejs [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+### OffTheRecord()
+Creates a new `OffTheRecord` `Server`.  Works with and without `new`:
+
+```javascript
+var OffTheRecord = require('./lib/');
+var server = new OffTheRecord();
+  // or
+var server = require('./lib/')();
+```
+
+### Server.start(done:Function)
+* done `Function` Optional callback to be called when server has started
+
+Start the server:
+```javascript
+server.start(function () {
+    console.log('the server has started!');
+})
+```
+
+### Server.stop(done:Function)
+* done `Function` Optional callback to be called when server has stopped
+
+Stop the server:
+```javascript
+server.stop(function () {
+    console.log('the server has stopped!');
+})
+```
+
+## Events
+
+### Event: 'starting'
+Emitted before the  server starts:
+
+```javascript
+server.on('starting', function onserverStarting () {
+    console.log('starting server...');
+});
+```
+
+### Event: 'stopping'
+Emitted before the server stops:
+
+```javascript
+server.on('stopping', function onServerStopping () {
+    console.log('stopping server...');
+});
+```
+
+### Event: 'stopped'
+Emitted once the server has stopped:
+
+```javascript
+server.on('stopped', function onServerStopped () {
+    console.log('server stopped!');
+});
+```
+
+### Event: 'started'
+Emitted once the server is started:
+
+```javascript
+server.on('started', function onServerStarted () {
+    console.log('server started!');
+});
+```
 
 
