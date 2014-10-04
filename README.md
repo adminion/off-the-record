@@ -22,10 +22,10 @@ server.on('started', function () {
 server.start();
 ```
 
-## install
+## Install
 
-### production install (default)
-The setup script will download and install all system dependencies (mongodb, openssl, nodejs, etc.), as well as any node-module dependencies via npm, optionally generate a key then create and sign a certificate, 
+### Production install (default)
+The setup script will download and install all system dependencies and node-module dependencies via npm, then create and start an upstart service.
 
 Clone the repo with git or download a copy then open a terminal, cd to that directory, then run `./setup.sh`.  You should not use sudo for the setup script, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers) as some internal commands within the setup script use sudo.
 
@@ -33,34 +33,65 @@ Clone the repo with git or download a copy then open a terminal, cd to that dire
     $ cd off-the-record/
     $ ./setup.sh
     
-### development install  
-By default, Off-The-Record installs for Production by creating and starting an upstart service; however, if you plan on installing for Development or testing purposes, you likely won't want to create a service.  To skip the upstart stuff and just install system/node-module dependencies, supply the `-d` or `--dev` flag to `./setup.sh`:
-
-    $ ./setup.sh -d
-      // or
-    $ ./setup.sh --dev
-
-If you don't care about having a valid certificate, you may generate one at setup by supplying flags.  
-    
-    $ ./setup.sh -g
-    $ ./setup.sh --generate
-    $ ./setup.sh -s
-    $ ./setup.sh --ssl
-_any of the above will trigger generation/signing of key and certificate._
-
 Upon successful installation, setup will create and start an upstart job by the name of `off-the-record`:
 
     $ ./setup.sh
+    ...
     off-the-record start/running, process 22709
     off-the-record server installed!
+    $ 
 
-## uninstall
+### Development install 
+#### Dependencies
+If you plan on installing for development or testing purposes, you will need to manually install system dependencies and node-module dependencies:
+
+    $ sudo apt-get update
+    $ sudo apt-get install openssl nodejs npm mongodb
+    $ sudo npm-install
+    
+#### Certificate/key
+
+If you're developing, you probably don't have--let alone care about having--a valid certificate.  To get started quickly you can generate a key, create a certificate and sign it all in one command:
+
+    $ ./gen-key-signed-cert.sh
+
+which will prompt you for certificate pertinents, then create (if it doesn't exist) `.ssl/` with `otrd-cert.pem` and `otrd-key.pem` inside.
+
+You may optionally provide a string to be prepended their names:
+
+    $ ./gen-key-signed-cert.sh myServer
+    
+which will name the files `myServer-cert.pem` and `myServer-key.pem`, respectively.
+
+#### Starting manually
+To manually start the server, simply run `off-the-record.sh`:
+
+    $ ./off-the-record.sh
+    
+##### Enable debug output
+Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display debugging information.  To enable Off-The-Record debug messages, pass `"off-the-record*"` to the startup script:
+
+    $ ./off-the-record.sh "off-the-record*"
+    
+Each file's output is prepended with a unique namespace, so to only enable debug output for the file `lib/transport/http.js`, you would pass "off-the-record:transport:http" to the startup script:
+
+    $ ./off-the-record.sh "off-the-record:transport:http"
+    
+To enable all debug messages (including those of express, socket.io, mongoose, etc.) pass `"*"` or `\*`:
+
+    $ ./off-the-record.sh "*"
+    // or
+    $ ./off-the-record.sh \*
+    
+_See [visionmedia/debug](https://github.com/visionmedia/debug) for more information._
+
+## Uninstall
 
 Uninstallation is just as easy as installation; however, you must also be a [sudoer](https://help.ubuntu.com/community/Sudoers).
 
     $ ./uninstall.sh
 
-## configure
+## Configure
 
 You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override the defaults:
 
@@ -88,9 +119,6 @@ You might want to define some custom configuration options in `config/production
 }
 ```
 _its recommended that you generate your own session secret!_
-
-## start
-
 
 ## Server API
 
