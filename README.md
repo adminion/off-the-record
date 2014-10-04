@@ -24,11 +24,21 @@ server.start();
 
 ## install
 
+### production install (default)
+The setup script will download and install all system dependencies (mongodb, openssl, nodejs, etc.), as well as any node-module dependencies via npm, optionally generate a key then create and sign a certificate, 
+
 Clone the repo with git or download a copy then open a terminal, cd to that directory, then run `./setup.sh`.  You should not use sudo for the setup script, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers) as some internal commands within the setup script use sudo.
 
     $ git clone https://github.com/techjeffharris/off-the-record.git
     $ cd off-the-record/
     $ ./setup.sh
+    
+### development install  
+By default, Off-The-Record installs for Production by creating and starting an upstart service; however, if you plan on installing for Development or testing purposes, you likely won't want to create a service.  To skip the upstart stuff and just install system/node-module dependencies, supply the `-d` or `--dev` flag to `./setup.sh`:
+
+    $ ./setup.sh -d
+      // or
+    $ ./setup.sh --dev
 
 If you don't care about having a valid certificate, you may generate one at setup by supplying flags.  
     
@@ -78,6 +88,8 @@ You might want to define some custom configuration options in `config/production
 }
 ```
 _its recommended that you generate your own session secret!_
+
+## start
 
 
 ## Server API
