@@ -16,10 +16,6 @@ case $1 in
     --ssl)
         $gen $2  
         ;;
-    --uninstall)
-        ./uninstall.sh
-        exit
-        ;;
     "")
         ;;
     *)
@@ -56,6 +52,11 @@ then
 fi
 
 sudo ln -s $here/off-the-record.sh /usr/bin/otrd
+
+if [ -e '/etc/init/off-the-record.conf' ]
+then
+    sudo rm /etc/init/off-the-record.conf
+fi
 
 # create upstart job
 sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
