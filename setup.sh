@@ -1,31 +1,8 @@
 #!/bin/bash
 
-gen='./gen-key-signed-cert.sh'
-
-# if argument 1...
-case $1 in 
-    -g)
-        $gen $2
-        ;;
-    --generate)
-        $gen $2
-        ;;
-    -s)
-        $gen $2
-        ;;
-    --ssl)
-        $gen $2  
-        ;;
-    "")
-        ;;
-    *)
-        echo "$0: error: unrecognized argument '$1'"
-        ;;
-esac
-
 # install ubuntu package dependencies
-# sudo apt-get update
-# sudo apt-get install -y openssl nodejs npm mongodb
+sudo apt-get update
+sudo apt-get install -y openssl nodejs npm mongodb
 sudo npm install 
 
 if [ ! -e 'config/development.json' ] 
@@ -44,17 +21,20 @@ fi
 
 here=`pwd`
 
-# create symlink to startup script
-
+# look for existing startup script symlink
 if [ -L '/usr/bin/otrd' ]
 then
+    # remove it, if present
     sudo rm /usr/bin/otrd
 fi
 
+# create symlink to startup script
 sudo ln -s $here/off-the-record.sh /usr/bin/otrd
 
+# look for existing upstart script
 if [ -e '/etc/init/off-the-record.conf' ]
 then
+    # remove it, if present
     sudo rm /etc/init/off-the-record.conf
 fi
 
@@ -63,7 +43,7 @@ sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
 start on started mongodb
 
 script
-    export NODE_ENV='development'
+    export NODE_ENV='production'
     cd $here 
     ./off-the-record.sh \* | logger -t otrd
 end script

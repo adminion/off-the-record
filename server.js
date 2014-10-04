@@ -10,8 +10,8 @@ var debug = require('debug')(server.env().context());
 
 process.on('SIGINT', function () {
     if (interrupt && !stopping) {
+        console.log()
         stopping = true;
-        console.log('\nstopping server...');
         server.stop(process.exit);
     } else {
         console.log('\n(^C again to quit)'); 
