@@ -5,7 +5,7 @@ Off-The-Record
 
 a boilerplate messaging app with strict privacy by default 
 
-always hosted over https, and all messags are volatile
+always hosted over https, and all messages are volatile
 
 no message or file is persisted to any database, ever!
 
@@ -87,7 +87,7 @@ _See [visionmedia/debug](https://github.com/visionmedia/debug) for more informat
 
 ## Uninstall
 
-Uninstallation is just as easy as installation; however, you must also be a [sudoer](https://help.ubuntu.com/community/Sudoers).
+Uninstalling is just as easy as installation; however, you must also be a [sudoer](https://help.ubuntu.com/community/Sudoers).
 
     $ ./uninstall.sh
 
@@ -155,10 +155,8 @@ server.stop(function () {
 })
 ```
 
-## Events
-
 ### Event: 'starting'
-Emitted before the  server starts:
+Emitted when the server starts:
 
 ```javascript
 server.on('starting', function onserverStarting () {
@@ -166,8 +164,17 @@ server.on('starting', function onserverStarting () {
 });
 ```
 
+### Event: 'started'
+Emitted when the server has started:
+
+```javascript
+server.on('started', function onServerStarted () {
+    console.log('server started!');
+});
+```
+
 ### Event: 'stopping'
-Emitted before the server stops:
+Emitted when the server begins stopping:
 
 ```javascript
 server.on('stopping', function onServerStopping () {
@@ -176,7 +183,7 @@ server.on('stopping', function onServerStopping () {
 ```
 
 ### Event: 'stopped'
-Emitted once the server has stopped:
+Emitted when the server has stopped:
 
 ```javascript
 server.on('stopped', function onServerStopped () {
@@ -184,13 +191,114 @@ server.on('stopped', function onServerStopped () {
 });
 ```
 
-### Event: 'started'
-Emitted once the server is started:
+## HTTP Routes
 
-```javascript
-server.on('started', function onServerStarted () {
-    console.log('server started!');
-});
-```
+### Publicly Accessible Routes
+* `/`: Splash screen telling the world about off-the-record
+* `/logon`: Account logon page
+* `/logoff`: logs out the current user and kills the session
+* `/register`: A new account registration form
 
+### Routes Requiring Authentication
+* `/home`: user's home page; shows preview of friends online and conversations
+* `/profile`: user's profile; shows information about user based upon privacy preferences.
+* `/search`: search friends and publicly discoverable users
+* `/convos`: a list of conversations which the user either has started or has been invited
+* `/convos/:convoID`: a particular conversation
+* `/friends`: user's list of friends
+* `/friends/:friendID`: a particular friend's profile
 
+## Socket.io Server API
+
+### NSP: `/accounts`
+
+#### Event: 'friends'
+* accountID `String` Optional `_id` of a particular account
+
+Get info about friends
+
+#### Event: 'preferences'
+* changes `Object` Optional preferences to be updated
+
+Get or set user preferences
+
+#### Event: 'requests-sent'
+Get all friend requests the user has sent
+
+#### Event: 'requests-pending'
+Get all friend requests that are pending the user's approval
+
+#### Event: 'request-send'
+* accountID `String` The `_id` of the account whose friendship is being requested
+
+Request another user's friendship
+
+#### Event: 'request-accept'
+* accountID `String` The `_id` of the account whose friendship request is to be accepted
+
+Accept another user's friendship request
+
+#### Event: 'request-deny'
+* accountID `String` The `_id` of the account whose friendship request is to be denied
+
+Deny another user's friendship request
+
+#### Event: 'search'
+* conditions `Object` The search conditions.
+
+Search accounts, friends, friends of friends
+
+#### Event: 'un-friend'
+* accountID `String` The `_id` of the account to un-friend.
+
+Abolish a friendship
+
+### NSP: `/conversations`
+
+#### Event: 'get'
+Get conversations that the user has either started or been invited
+
+#### Event: 'join'
+* conversationID `String` The `_id` of the conversation
+
+Join a conversation
+
+#### Event: 'leave'
+* conersationID `String` The `_id` of the conversation
+
+Leave a conversation
+
+#### Event: 'send-message'
+* conversationID `String` The `_id` of the conversation
+* message `String` The message to be sent
+
+Send a message to a conversation
+
+#### Event: 'send-file'
+* conversationID `String` the `_id` of the conversation
+* filename `String` The name of the file
+* data `ArrayBuffer` The file data
+
+Send a file to a conversation
+
+#### Event: 'start'
+* invitees `Array` People invited to join the conversation
+
+Start a conversation
+
+#### Event: 'boot'
+* conversationID `String` The `_id` of the conversation
+* accountID `String` The `_id` of the account to boot
+
+Boot an account from a conversation
+
+#### Event: 'invite'
+* conversationID `String` The `_id` of the conversation
+* invitees `Array` People invited to join the conversation
+
+Invite one or more people to a conversation
+
+#### Event: 'end'
+* conversationID `String` The `_id` of the conversation
+
+End a conversation
