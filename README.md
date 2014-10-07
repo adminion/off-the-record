@@ -83,15 +83,16 @@ To enable all debug messages (including those of express, socket.io, mongoose, e
     // or
     $ ./off-the-record.sh \*
     
-_See [visionmedia/debug](https://github.com/visionmedia/debug) for more information._
+*Enabling debug output will set NODE_ENV to 'developement'.  See [Configure](https://github.com/techjeffharris/off-the-record#configure) below for details.*
 
 ## Uninstall
 
-Uninstalling is just as easy as installation; however, you must also be a [sudoer](https://help.ubuntu.com/community/Sudoers).
+Uninstalling is like installing: you must be a [sudoer](https://help.ubuntu.com/community/Sudoers).
 
     $ ./uninstall.sh
 
 ## Configure
+Off the record is configured using [config](https://github.com/lorenwest/node-config).
 
 You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override the defaults:
 
