@@ -24,7 +24,7 @@ server.start();
 
 ## Install
 
-### Production install (default)
+### Production install
 The setup script will download and install all system dependencies and node-module dependencies via npm, then create and start an upstart service.
 
 Clone the repo with git or download a copy then open a terminal, cd to that directory, then run `./setup.sh`.  You should not use sudo for the setup script, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers) as some internal commands within the setup script use sudo.
@@ -55,7 +55,7 @@ If you're developing, you probably don't have--let alone care about having--a va
 
     $ ./gen-key-signed-cert.sh
 
-which will prompt you for certificate pertinents, then create (if it doesn't exist) `.ssl/` with `otrd-cert.pem` and `otrd-key.pem` inside.
+which will prompt you for certificate pertinents (which don't matter in dev), then create (if it doesn't exist) `.ssl/` with `otrd-cert.pem` and `otrd-key.pem` inside.
 
 You may optionally provide a string to be prepended their names:
 
@@ -94,7 +94,7 @@ Uninstalling is like installing: you must be a [sudoer](https://help.ubuntu.com/
 ## Configure
 Off the record is configured using [config](https://github.com/lorenwest/node-config).
 
-You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override the defaults:
+You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override those in `config/default.json`:
 
 ```json
 {
@@ -114,12 +114,12 @@ You might want to define some custom configuration options in `config/production
         "key": "off-the-record.sid",
         "resave": true,
         "saveUninitialized": true,
-        "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
+        "secret": "notagoodsecretnoreallydontusethisone"
     },
     "shutdownTimeout": 5000
 }
 ```
-_its recommended that you generate your own session secret!_
+_You should generate your own session secret!!_
 
 ## Server API
 
