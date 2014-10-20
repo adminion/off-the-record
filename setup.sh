@@ -1,8 +1,13 @@
 #!/bin/bash
 
+if [ $1 -eq "development" ]
+then 
+    dev=true
+fi
+
 # install ubuntu package dependencies
 sudo apt-get update
-sudo apt-get install -y openssl nodejs npm mongodb
+sudo apt-get install -y openssl nodejs mongodb
 sudo npm install 
 
 if [ ! -e 'config/development.json' ] 
@@ -19,27 +24,17 @@ EOF
     cp config/development.json config/production.json
 fi
 
-here=`pwd`
-
-# look for existing startup script symlink
-if [ -L '/usr/bin/otrd' ]
+if [ dev -eq false ]
 then
-    # remove it, if present
-    sudo rm /usr/bin/otrd
-fi
+    # look for existing upstart script
+    if [ -e '/etc/init/off-the-record.conf' ]
+    then
+        # remove it, if present
+        sudo rm /etc/init/off-the-record.conf
+    fi
 
-# create symlink to startup script
-sudo ln -s $here/off-the-record.sh /usr/bin/otrd
-
-# look for existing upstart script
-if [ -e '/etc/init/off-the-record.conf' ]
-then
-    # remove it, if present
-    sudo rm /etc/init/off-the-record.conf
-fi
-
-# create upstart job
-sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
+    # create upstart job
+    sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
 start on started mongodb
 
 script
@@ -49,6 +44,7 @@ script
 end script
 EOF
 
-sudo start off-the-record
+    sudo start off-the-record
+fi
 
 echo "off-the-record server installed!"
