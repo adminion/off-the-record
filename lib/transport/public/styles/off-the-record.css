@@ -1,0 +1,34 @@
+
+li {
+    list-style: none inside;
+}
+
+select {
+    display: block;
+}
+
+label { 
+    display: block;
+}
+
+#invitees, #searchSuggestions {
+    display: none;
+}
+
+#invited, #suggestionList {
+    list-style: none inside;
+    width: 100px;
+}
+
+#links {
+    list-style: none inside;
+    padding-left: 0px;
+}
+
+#links li {
+    display: inline;
+}
+
+#start {
+    padding: 10px;
+}

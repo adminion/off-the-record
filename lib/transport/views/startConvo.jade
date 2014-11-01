@@ -1,0 +1,29 @@
+extends layout
+
+block socketio
+    script(src='/socket.io/socket.io.js')
+    script(src='/scripts/off-the-record.js')
+    script(src='/scripts/startConvo.js')
+
+block content
+    #content
+        h2 Start Conversation
+        //- label(for="public") Publicly visible?
+        //- input(name="public", id="public", type="checkbox", checked="checked")
+        //- label(for="addBlocked", class="public") Block a user:
+        //- input(id="addBlocked", name="addBlocked", class="public")
+        //- label(for="blocked", class="public") These people will be blocked:
+        //- textArea(id="blocked", class="public")
+        //- br
+        //- br
+        label(for="addInvitee") Search for friends to invite:
+        input(id="addInvitee", name="addInvitee", type="search", results="5", incremental="incremental", placeholder="search for users", disabled="disabled")
+        #searchSuggestions 
+            p Search suggestions (click to invite)
+            ul#suggestionList
+        #invitees
+            label(for="invited") 
+            p To be Invited (click to remove)
+            ul#invited
+        #start
+            button(id="startConvo") Start Conversation

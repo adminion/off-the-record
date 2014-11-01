@@ -7,10 +7,10 @@ block content
             | &nbsp;[&nbsp;
             a(href='/register') Register
             | &nbsp;]&nbsp;
-        if (request.cookies.err)
-            p.err=request.cookies.err
+        if (error) 
+            p.err=error
         - var action = '/logon'
-        - var redir = request.cookies.redir || '/'
+        - var redir = request.flash('redir') || '/'
         form(action=action, method='POST')
             input(type='hidden', name='redir', value=redir)
             table

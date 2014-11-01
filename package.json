@@ -1,39 +1,63 @@
 {
-    "name": "off-the-record",
-    "description": "Chat for the paranoid..", 
-    "version": "0.0.1",
-    "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
-    "license": {
-        "type":     "BSD",
-        "file:":    "LICENSE"
-    },
-    "repository": {
-        "type": "git", 
-        "url": "git://github.com/adminion/adminion.git"
-    },
-    "dependencies": {
-        "body-parser":              "*",
-        "cookie-parser":            "*",
-        "config":                   "*",
-        "connect-mongo":            "*",
-        "express":                  "4.x",
-        "express-session":          "*",
-        "jade":                     "*",
-        "method-override":          "*",
-        "mongoose":                 "~3.8",
-        "mongoose-friends":         "*",
-        "morgan":                   "*",
-        "passport":                 "*",
-        "passport-local":           "*",
-        "passport-local-mongoose":  "*",
-        "passport.socketio":        "*",
-        "serve-static":             "*",
-        "socket.io":                "*",
-        "serve-favicon":            "*",
-        "techjeffharris-utils":     "*", 
-        "voice.js":                 "*"
-    },
-    "devDependencies": {
-        "debug": "*"
-    }
+  "name": "off-the-record",
+  "description": "Chat for the paranoid..",
+  "version": "0.0.1",
+  "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
+  "preferGlobal": true,
+  "bin": {
+    "off-the-record": "./off-the-record.sh"
+  },
+  "scripts": {
+    "start": "./off-the-record.sh"
+  },
+  "main": "lib/index.js",
+  "browser": "lib/transport/client/bundle.js",
+  "license": {
+    "type": "BSD",
+    "file:": "LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adminion/adminion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techjeffharris/off-the-record/issues"
+  },
+  "keywords": [
+    "chat",
+    "off-the-record",
+    "private",
+    "file",
+    "files",
+    "transfer",
+    "secure",
+    "encrypted",
+    "https"
+  ],
+  "dependencies": {
+    "body-parser": "*",
+    "browserify": "^6.1.0",
+    "config": "*",
+    "connect-mongo": "*",
+    "cookie-parser": "*",
+    "express": "4.x",
+    "express-session": "*",
+    "jade": "*",
+    "method-override": "*",
+    "mongoose": "~3.8",
+    "mongoose-friends": "*",
+    "morgan": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-local-mongoose": "*",
+    "passport.socketio": "*",
+    "serve-favicon": "*",
+    "serve-static": "*",
+    "socket.io": "*",
+    "techjeffharris-utils": "*",
+    "voice.js": "*"
+  },
+  "devDependencies": {
+    "debug": "*"
+  }
 }

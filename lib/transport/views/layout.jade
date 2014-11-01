@@ -3,6 +3,7 @@ html
     head
         block head
             title= env.serverName
+            link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
             block jquery
                 script(src='/scripts/jquery.js')
             block socketio
@@ -53,10 +54,14 @@ html
                         block nav
                             #nav
                                 if (links && request.session.passport.user)
-                                    label(for='links') Navigation:
                                     ul#links
+                                        - var foo = 0;
                                         each url, title in links
-                                            li: a(href=url) #{title}
+                                            if (foo++)
+                                                | &nbsp;|&nbsp;
+                                                li: a(href=url) #{title}
+                                            else
+                                                li: a(href=url) #{title}
                 #body
                     block body
                         block content

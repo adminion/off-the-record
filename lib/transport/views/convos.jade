@@ -3,8 +3,10 @@ extends layout
 block socketio
     script(src='/socket.io/socket.io.js')
     script(src='/scripts/off-the-record.js')
-
+    script(src='/scripts/convo.js')
 block content
     #content
-        h2 Conversations: 
+        h2 Conversations: [&nbsp;
+            a(id='startConvo', href="/startConvo") Start
+            | &nbsp;]
         ul#convos
