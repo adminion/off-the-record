@@ -1,10 +1,32 @@
 extends layout
+
+block socketio
+    script(src="/socket.io/socket.io.js")
+    script(src='/scripts/off-the-record.js')
+    script(src='/scripts/profile.js')
+
 block content
     #contents
         h2 Profile:
-        table
+            | &nbsp;
+            button(id="edit-profile") edit
+            | &nbsp;
+        table(id="profile-table")
             tbody
-                each value, key in request.user.toObject()
+                each value, key in request.user.profile.toObject()
                     tr
                         td=key
-                        td=value
+                        td.editable #{value}
+                tr
+                    td email: 
+                    td.editable #{request.user.email}
+        h2 Privacy:
+            | &nbsp;
+            button(id="edit-privacy") edit
+            | &nbsp;
+        table(id="privacy-table")
+            tbody
+                each value, key in request.user.privacy.toObject()
+                    tr
+                        td #{key}
+                        td.editable #{env.privacy.levels[value]}
