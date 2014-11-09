@@ -11,6 +11,14 @@ label {
     display: block;
 }
 
+#cancel-profile {
+    display: none;
+}
+
+#save-profile {
+    display: none;
+}
+
 #invitees, #searchSuggestions {
     display: none;
 }
