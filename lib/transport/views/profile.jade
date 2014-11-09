@@ -11,14 +11,18 @@ block content
             | &nbsp;
             button(id="edit-profile") edit
             | &nbsp;
+            button(id="cancel-profile") cancel
+            | &nbsp;
+            button(id="save-profile") save
+            | &nbsp;
         table(id="profile-table")
             tbody
                 each value, key in request.user.profile.toObject()
                     tr
-                        td=key
+                        td.propName #{key}
                         td.editable #{value}
                 tr
-                    td email: 
+                    td.propName email
                     td.editable #{request.user.email}
         h2 Privacy:
             | &nbsp;
@@ -28,5 +32,5 @@ block content
             tbody
                 each value, key in request.user.privacy.toObject()
                     tr
-                        td #{key}
+                        td.propName #{key}
                         td.editable #{env.privacy.levels[value]}
