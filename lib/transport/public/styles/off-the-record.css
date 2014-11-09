@@ -1,0 +1,58 @@
+
+li {
+    list-style: none inside;
+}
+
+select {
+    display: block;
+}
+
+label { 
+    display: block;
+}
+
+#invitees, #searchSuggestions {
+    display: none;
+}
+
+#invited, #suggestionList {
+    list-style: none inside;
+    width: 100px;
+}
+
+#links {
+    list-style: none inside;
+    padding-left: 0px;
+}
+
+#links li {
+    display: inline;
+}
+
+#search-for li {
+    display: block;
+}
+
+#search-for input {
+    display:inline;
+}
+
+#search-for label {
+    display: inline;
+}
+
+#search-criteria li {
+    display: block;
+}
+
+#search-criteria input {
+    display:inline;
+}
+
+#search-criteria label {
+    display: inline;
+}
+
+#start {
+    padding: 10px;
+}

@@ -47,7 +47,7 @@ If you plan on installing for development or testing purposes, you will need to 
 
     $ sudo apt-get update
     $ sudo apt-get install openssl nodejs npm mongodb
-    $ sudo npm-install
+    $ sudo npm install
     
 #### Certificate/key
 

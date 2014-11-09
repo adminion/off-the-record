@@ -6,14 +6,35 @@ block socketio
     
 block content
     #content
+        label(for="search-for") Search For:
+        #search-for
+            ol
+                li
+                    input(id="search-for-friends-of-friends", type="checkbox")
+                    label(for="search-for-friends-of-friends") Friends of Friends
+                li
+                    input(id="search-for-public", type="checkbox")
+                    label(for="search-for-public") Public
+        label(for="search-criteria") Search Criteria:
+        radiogroup#search-criteria
+            ol
+                li
+                    input(id="search-criteria-email", type="radio", selected=true)
+                    label(for="search-criteria-displayName") DisplayName
+                li
+                    input(id="search-criteria-displayName", type="radio")
+                    label(for="search-criteria-email") Email
+                li
+                    input(id="search-criteria-name", type="radio")
+                    label(for="search-criteria-name") Name 
         label(for="search") Search
         input(id="search-input")
-        button(id="search-button") Search
+        button(id="search-accounts") Search
         h2 Friends:
         ul#friends
 
         h2 Friends of Friends:
         ul#friends-of-friends
 
-        h2 Non-Friends:
-        ul#non-friends
+        h2 Public Accounts:
+        ul#public-accounts
