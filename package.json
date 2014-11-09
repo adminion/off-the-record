@@ -3,6 +3,9 @@
   "description": "Chat for the paranoid..",
   "version": "0.0.1",
   "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
+  "contributors": [
+    "Zane <ydzane@gmail.com>"
+    ],
   "preferGlobal": true,
   "bin": {
     "off-the-record": "./off-the-record.sh"
