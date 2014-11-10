@@ -11,11 +11,7 @@ label {
     display: block;
 }
 
-#cancel-profile {
-    display: none;
-}
-
-#save-profile {
+#cancel-profile, #save-profile, #cancel-privacy, #save-privacy {
     display: none;
 }
 
