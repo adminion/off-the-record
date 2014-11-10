@@ -28,6 +28,10 @@ block content
             | &nbsp;
             button(id="edit-privacy") edit
             | &nbsp;
+            button(id="cancel-privacy") cancel
+            | &nbsp;
+            button(id="save-privacy") save
+            | &nbsp;
         table(id="privacy-table")
             tbody
                 each value, key in request.user.privacy.toObject()
