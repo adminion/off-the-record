@@ -3,30 +3,10 @@ extends layout
 block socketio
     script(src="/socket.io/socket.io.js")
     script(src='/scripts/off-the-record.js')
+    script(src='/scripts/search.js')
     
 block content
     #content
-        label(for="search-for") Search For:
-        #search-for
-            ol
-                li
-                    input(id="search-for-friends-of-friends", type="checkbox")
-                    label(for="search-for-friends-of-friends") Friends of Friends
-                li
-                    input(id="search-for-public", type="checkbox")
-                    label(for="search-for-public") Public
-        label(for="search-criteria") Search Criteria:
-        radiogroup#search-criteria
-            ol
-                li
-                    input(id="search-criteria-email", type="radio", selected=true)
-                    label(for="search-criteria-displayName") DisplayName
-                li
-                    input(id="search-criteria-displayName", type="radio")
-                    label(for="search-criteria-email") Email
-                li
-                    input(id="search-criteria-name", type="radio")
-                    label(for="search-criteria-name") Name 
         label(for="search") Search
         input(id="search-input")
         button(id="search-accounts") Search
