@@ -43,11 +43,11 @@ Upon successful installation, setup will create and start an upstart job by the 
 
 ### Development install 
 #### Dependencies
-If you plan on installing for development or testing purposes, you will need to manually install system dependencies and node-module dependencies:
-
-    $ sudo apt-get update
-    $ sudo apt-get install openssl nodejs npm mongodb
-    $ sudo npm install
+If you plan on installing for development or testing purposes, simply pass `development` to `setup.sh`:
+   
+    $ ./setup.sh development
+    
+which will skip the upstart job parts.
     
 #### Certificate/key
 
