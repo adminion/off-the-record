@@ -31,13 +31,13 @@ html
                                                 - var url = ''
                                                 - for (var i=1; i<=id   ; i++)
                                                     - url += '/' + breadcrumbs[i]
-                                                    - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
+                                                    //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
                                                 a(href=url) #{crumb}
                         block banner
                             #banner
                                 h2= env.package.description
                                 // this would be a good place for a banner image
-                        block session
+                       block session
                             #session
                                 if (request.session.passport.user)
                                     span Logged on as 

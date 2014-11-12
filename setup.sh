@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [ $1 -eq "development" ]
+if [ $1 = "development" ]
 then 
-    dev=true
+    dev=1
+else
+    dev=0
 fi
 
 # install ubuntu package dependencies
@@ -24,7 +26,7 @@ EOF
     cp config/development.json config/production.json
 fi
 
-if [ dev -eq false ]
+if [ "$dev" -eq "0" ] 
 then
     # look for existing upstart script
     if [ -e '/etc/init/off-the-record.conf' ]
