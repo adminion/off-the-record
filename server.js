@@ -3,6 +3,7 @@ var OffTheRecord = require('./lib/'),
     server,
     stopping;
 
+Error.stackTraceLimit = Infinity;
 
 server = new OffTheRecord();
 

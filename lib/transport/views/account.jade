@@ -6,28 +6,20 @@ block socketio
 
 block content
     #contents
-        h2 #{request.account.profile.email}
+        h2= accountInfo.email
         table(id="profile-table")
             tbody
                 each propName in ['displayName', 'firstName', 'lastName']
                     tr
-                        td.propName #{propName}
-                        td.editable #{request.user.profile[propName]}
+                        td.propName= propName
+                        td.editable= accountInfo.profile[propName]
                 tr
                     td.propName email
-                    td #{request.user.email}
-        h2 Privacy:
-            | &nbsp;
-            button(id="edit-privacy") edit
-            | &nbsp;
-            button(id="cancel-privacy") cancel
-            | &nbsp;
-            button(id="save-privacy") save
-            | &nbsp;
+                    td= accountInfo.email
         table(id="privacy-table")
             tbody
                 each propName, key in ['search', 'profile', 'friendRequests', 'chatRequests']
-                    - var level = request.user.privacy[propName];
+                    - var level = accountInfo.privacy[propName];
                     tr
-                        td.propName #{propName}
-                        td.editable #{env.privacy.levels[level]}
+                        td.propName= propName
+                        td.editable= env.privacy.levels[level]
