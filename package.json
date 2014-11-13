@@ -5,7 +5,7 @@
   "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
   "contributors": [
     "Zane <ydzane@gmail.com>"
-    ],
+  ],
   "preferGlobal": true,
   "bin": {
     "off-the-record": "./off-the-record.sh"
@@ -58,7 +58,8 @@
     "serve-static": "*",
     "socket.io": "*",
     "techjeffharris-utils": "*",
-    "voice.js": "*"
+    "voice.js": "*",
+    "connect-flash": "~0.1.1"
   },
   "devDependencies": {
     "debug": "*"
