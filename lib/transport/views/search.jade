@@ -8,8 +8,8 @@ block socketio
 block content
     #content
         label(for="search") Search
-        input(id="search-input")
-        button(id="search-accounts") Search
+        input(id="search-input", type="search", results="5", incremental="incremental", placeholder="search for users", disabled="disabled")
+        button(id="search-accounts", disabled="disabled") Search
         h2 Friends:
         ul#friends
 
