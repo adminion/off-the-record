@@ -43,11 +43,11 @@ Upon successful installation, setup will create and start an upstart job by the 
 
 ### Development install 
 #### Dependencies
-If you plan on installing for development or testing purposes, you will need to manually install system dependencies and node-module dependencies:
-
-    $ sudo apt-get update
-    $ sudo apt-get install openssl nodejs npm mongodb
-    $ sudo npm install
+If you plan on installing for development or testing purposes, simply pass `development` to `setup.sh`:
+   
+    $ ./setup.sh development
+    
+which will skip the upstart job parts.
     
 #### Certificate/key
 
@@ -203,103 +203,140 @@ server.on('stopped', function onServerStopped () {
 ### Routes Requiring Authentication
 * `/home`: user's home page; shows preview of friends online and conversations
 * `/profile`: user's profile; shows information about user based upon privacy preferences.
+* `/profille/:email`: other users' profiles.
 * `/search`: search friends and publicly discoverable users
 * `/convos`: a list of conversations which the user either has started or has been invited
 * `/convos/:convoID`: a particular conversation
 * `/friends`: user's list of friends
-* `/friends/:friendID`: a particular friend's profile
 
-## Socket.io Server API
+## Client API
 
-### NSP: `/accounts`
+### OffTheRecord
+Exposed as the `OffTheRecord` global in `window`, extends nodejs [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
 
-#### Event: 'friends'
-* accountID `String` Optional `_id` of a particular account
+#### OffTheRecord(options:Object):Client
+* options `Object` An optional Object containing configuration options.
 
-Get info about friends
+Connect to an `OffTheRecord` server:
+```javascript
+var options = {
+    debug: "Jeff'sSecretServer*",
+    chunkSize: 128,
+    pickerId: 'my-file-picker'
+};
 
-#### Event: 'preferences'
-* changes `Object` Optional preferences to be updated
+var client = OffTheRecord(options);
+// or use defaults:
+var client = OffTheRecord();
+```
 
-Get or set user preferences
+### Client.getFriends(gotFriends:Function)
+* gotFriends `Function` Called once friends have been retreived.  Passed err (null on success) and an array of friends retreived (empty on failure).
 
-#### Event: 'requests-sent'
-Get all friend requests the user has sent
+Get all friends for the current user:
+```javascript
+client.getFriends(function(err, friends) {
+    if (err) throw err;
+    for (var i=0; i< friends.length; i++) {
+        console.log('friend' + i, friends[i]);
+    }
+});
+```
 
-#### Event: 'requests-pending'
-Get all friend requests that are pending the user's approval
+### Client.updateProfile(updates:Object, onceUpdated:Function)
+* updates `Object` An object containing the profile properties to be updated.
+* onceUpdated `Function` Called when update completes, passing an err (null if success) and the newly updated user.
 
-#### Event: 'request-send'
-* accountID `String` The `_id` of the account whose friendship is being requested
+Update the current user's profile:
+```javascript
 
-Request another user's friendship
+var updates = {
+    firstName: "John",
+    lastName: "Doe",
+    displayName: "Unknown"
+};
 
-#### Event: 'request-accept'
-* accountID `String` The `_id` of the account whose friendship request is to be accepted
+client.updateProfile(updates, function(err, updateUser) {
+    console.log('updated user ' + updateUser._id + '\'s profile:', updatedUser);
+});
+```
 
-Accept another user's friendship request
 
-#### Event: 'request-deny'
-* accountID `String` The `_id` of the account whose friendship request is to be denied
+### Client.updatePrivacy(updates:Object, onceUpdated:Function) 
+* updates `Object` An object containing the privacy properties to be updated.
+* onceUpdated `Function` Called when update completes, passing an err (null if success) and the newly updated user.
 
-Deny another user's friendship request
+Update the current user's privacy:
+```javascript
 
-#### Event: 'search'
-* conditions `Object` The search conditions.
+var updates = {
+    firstName: "John",
+    lastName: "Doe",
+    displayName: "Unknown"
+};
 
-Search accounts, friends, friends of friends
+client.updatePrivacy(updates, function(err, updateUser) {
+    console.log('updated user ' + updateUser._id + '\'s privacy:', updatedUser);
+});
+```
 
-#### Event: 'un-friend'
-* accountID `String` The `_id` of the account to un-friend.
+### Client.startConversation(invitees:Array, started:Function)
+* invitees `Array` An Array of Mongoose ObjectIds belonging to users that are invited to join the conversation.
+* started `Function` A Function called when the conversation has started which is passed the newly created conversation object.
 
-Abolish a friendship
+Start a conversation:
+```javascript
+var invitees = [
+    ObjectId('asdfghjkl;'),
+    ObjectId('qwertyuiop['),
+    ObjectId('zxcvbnm,.'),
+    ...
+];
 
-### NSP: `/conversations`
+client.startConversation(invitees, function (convo) {
+    console.log('started conversation '+ convo._id);
+});
+```
 
-#### Event: 'get'
-Get conversations that the user has either started or been invited
+### Client.joinConversation(convoId:ObjectId, joined:Function)
+* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to join.
+* joined `Function` A function called when the join operation has completed, passed a `Boolean` `success` indicating that the message was sent. 
 
-#### Event: 'join'
-* conversationID `String` The `_id` of the conversation
+Attempt to Join a conversation:
+```javascript
+client.joinConversation(convoId, function (success) {
+    if (success) {
+        console.log('Joined conversation ' + convoId + '!');
+    } else {
+        console.log('Failed to join conversation ' + convoId + '!');
+    }
+});
+```
 
-Join a conversation
+### Client.sendMessage(convoId:ObjectId, message:String, sent:Function)
+* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to which the message will be sent.
+* message `String` A string message to be sent to the conversation.
 
-#### Event: 'leave'
-* conersationID `String` The `_id` of the conversation
+Attempt to send a message to a conversation:
+```javascript
+client.sendMessage(convoId, 'I made it everyone!', function(success) {
+    if (!success) {
+        console.err('unable to send message to conversation ' + convoId+ '!');
+    }
+});
+```
 
-Leave a conversation
+### Client.sendFiles(convoId: ObjectId, success:Function)
+* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to which the files will be sent.
 
-#### Event: 'send-message'
-* conversationID `String` The `_id` of the conversation
-* message `String` The message to be sent
+Send files (selected by the file picker specified at instantiation) to a conversation: 
+```javascript
+client.sendFiles(convoId, function(success) {
+    if (!success) {
+        console.err('unable to send files to conversation ' + convoId+ '!');
+    }
+});
+```
 
-Send a message to a conversation
-
-#### Event: 'send-file'
-* conversationID `String` the `_id` of the conversation
-* filename `String` The name of the file
-* data `ArrayBuffer` The file data
-
-Send a file to a conversation
-
-#### Event: 'start'
-* invitees `Array` People invited to join the conversation
-
-Start a conversation
-
-#### Event: 'boot'
-* conversationID `String` The `_id` of the conversation
-* accountID `String` The `_id` of the account to boot
-
-Boot an account from a conversation
-
-#### Event: 'invite'
-* conversationID `String` The `_id` of the conversation
-* invitees `Array` People invited to join the conversation
-
-Invite one or more people to a conversation
-
-#### Event: 'end'
-* conversationID `String` The `_id` of the conversation
-
-End a conversation
+## LICENSE
+MIT

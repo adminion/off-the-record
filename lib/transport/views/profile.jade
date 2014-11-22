@@ -17,13 +17,13 @@ block content
             | &nbsp;
         table(id="profile-table")
             tbody
-                each value, key in request.user.profile.toObject()
+                each propName in ['displayName', 'firstName', 'lastName']
                     tr
-                        td.propName #{key}
-                        td.editable #{value}
+                        td.propName #{propName}
+                        td.editable #{request.user.profile[propName]}
                 tr
                     td.propName email
-                    td.editable #{request.user.email}
+                    td #{request.user.email}
         h2 Privacy:
             | &nbsp;
             button(id="edit-privacy") edit
@@ -34,7 +34,8 @@ block content
             | &nbsp;
         table(id="privacy-table")
             tbody
-                each value, key in request.user.privacy.toObject()
+                each propName, key in ['search', 'profile', 'friendRequests', 'chatRequests']
+                    - var level = request.user.privacy[propName];
                     tr
-                        td.propName #{key}
-                        td.editable #{env.privacy.levels[value]}
+                        td.propName #{propName}
+                        td.editable #{env.privacy.levels[level]}
