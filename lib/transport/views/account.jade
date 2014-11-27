@@ -11,15 +11,17 @@ block content
             tbody
                 each propName in ['displayName', 'firstName', 'lastName']
                     tr
-                        td.propName= propName
-                        td.editable= accountInfo.profile[propName]
+                        td=propName
+                        td=accountInfo.profile[propName]
                 tr
-                    td.propName email
-                    td= accountInfo.email
+                    td email
+                    td=accountInfo.email
         table(id="privacy-table")
             tbody
-                each propName, key in ['search', 'profile', 'friendRequests', 'chatRequests']
-                    - var level = accountInfo.privacy[propName];
-                    tr
-                        td.propName= propName
-                        td.editable= env.privacy.levels[level]
+                each propName, key in ['friendRequests', 'chatRequests']
+                    if (accountInfo[propName]) 
+                        tr
+                            td=propName
+                            td
+                                button(id=propName) #{propName.toUpperCase()}
+                        
