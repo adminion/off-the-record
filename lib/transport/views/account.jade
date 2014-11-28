@@ -16,12 +16,8 @@ block content
                 tr
                     td email
                     td=accountInfo.email
-        table(id="privacy-table")
-            tbody
-                each propName, key in ['friendRequests', 'chatRequests']
-                    if (accountInfo[propName]) 
-                        tr
-                            td=propName
-                            td
-                                button(id=propName) #{propName.toUpperCase()}
-                        
+        
+        if (accountInfo.friendRequests && accountInfo.relationship < relationships.values.FRIENDS) 
+            button(id="friendRequest") friend request
+        if (accountInfo.chatRequests)
+            button(id="chatRequest") chat request
