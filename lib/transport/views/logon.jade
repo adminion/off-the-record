@@ -10,7 +10,7 @@ block content
         if (error) 
             p.err=error
         - var action = '/logon'
-        - var redir = request.flash('redir') || '/'
+        - console.log('redir', redir)
         form(action=action, method='POST')
             input(type='hidden', name='redir', value=redir)
             table

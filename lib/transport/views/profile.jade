@@ -35,7 +35,7 @@ block content
         table(id="privacy-table")
             tbody
                 each propName, key in ['search', 'profile', 'friendRequests', 'chatRequests']
-                    - var level = request.user.privacy[propName];
+                    - var value = request.user.privacy[propName];
                     tr
                         td.propName #{propName}
-                        td.editable #{privacy.names[level]}
+                        td.editable #{privacy.names[value]}
