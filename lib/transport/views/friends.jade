@@ -3,8 +3,14 @@ extends layout
 block socketio
     script(src='/socket.io/socket.io.js')
     script(src='/scripts/off-the-record.js')
+    script(src='/scripts/friends.js')
     
 block content
     #content
-        h2 Friends:
+        h2 Friends
         ul#friends
+        h2 Friend Requests
+        h3 Requests You've Sent
+        ul#requests-sent
+        h3 Requests You've Received
+        ul#requests-received

@@ -22,6 +22,9 @@ block content
                         td.propName #{propName}
                         td.editable #{request.user.profile[propName]}
                 tr
+                    td.propName _id
+                    td #{request.user._id}
+                tr
                     td.propName email
                     td #{request.user.email}
         h2 Privacy:
