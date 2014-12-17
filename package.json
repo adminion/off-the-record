@@ -16,7 +16,7 @@
   "main": "lib/index.js",
   "browser": "lib/transport/client/bundle.js",
   "license": {
-    "type": "BSD",
+    "type": "BSD-3-Clause",
     "file:": "LICENSE"
   },
   "repository": {
