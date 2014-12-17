@@ -339,4 +339,4 @@ client.sendFiles(convoId, function(success) {
 ```
 
 ## LICENSE
-MIT
+BSD 3-CLAUSE
