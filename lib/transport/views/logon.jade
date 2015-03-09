@@ -10,14 +10,13 @@ block content
         if (error) 
             p.err=error
         - var action = '/logon'
-        - console.log('redir', redir)
         form(action=action, method='POST')
             input(type='hidden', name='redir', value=redir)
             table
                 tbody
                     tr
-                        td: label(for='email') Email:
-                        td: input(type='text', name='email', id='email')
+                        td: label(for='username') Username:
+                        td: input(type='text', name='username', id='username')
                     tr
                         td: label(for='password') Password: 
                         td: input(type='password', name='password', id='password')

@@ -7,6 +7,13 @@ block socketio
 
 block content
     #contents
+        h2 User:
+        table(id="user-table")
+            tbody
+                each propName in ['_id', 'username']
+                    tr
+                        td.propName #{propName}
+                        td #{request.user[propName]}
         h2 Profile:
             | &nbsp;
             button(id="edit-profile") edit
@@ -17,16 +24,10 @@ block content
             | &nbsp;
         table(id="profile-table")
             tbody
-                each propName in ['displayName', 'firstName', 'lastName']
+                each propName in ['firstName', 'lastName']
                     tr
                         td.propName #{propName}
                         td.editable #{request.user.profile[propName]}
-                tr
-                    td.propName _id
-                    td #{request.user._id}
-                tr
-                    td.propName email
-                    td #{request.user.email}
         h2 Privacy:
             | &nbsp;
             button(id="edit-privacy") edit
@@ -37,8 +38,7 @@ block content
             | &nbsp;
         table(id="privacy-table")
             tbody
-                each propName, key in ['search', 'profile', 'friendRequests', 'chatRequests']
-                    - var value = request.user.privacy[propName];
+                each propName, key in ['profile', 'friendRequest', 'chatRequest']
                     tr
                         td.propName #{propName}
-                        td.editable #{privacy.names[value]}
+                        td.editable #{privacy[request.user.privacy[propName]]}

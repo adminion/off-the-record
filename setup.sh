@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [ $1 = "development" ]
+if [ $1 = "--development" ]
 then 
+    echo '============================== DEVLEOPMENT INSTALL =============================='
     dev=1
 else
     dev=0

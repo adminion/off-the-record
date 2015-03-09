@@ -9,12 +9,15 @@ block content
     #content
         label(for="search") Search
         input(id="search-input", type="search", results="5", incremental="incremental", placeholder="search for users", disabled="disabled")
-        button(id="search-accounts", disabled="disabled") Search
+        button(id="search-users", disabled="disabled") Search
         h2 Friends:
         ul#friends
 
         h2 Friends of Friends:
         ul#friends-of-friends
+
+        h2 Pending Friends:
+        ul#pending-friends
 
         h2 Non-Friends:
         ul#non-friends

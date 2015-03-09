@@ -12,14 +12,14 @@ block content
 			table
 				tbody
 					tr
+						td: label(for='username') Username: 
+						td: input(type='text', name='username', id='username')
+					tr
 						td: label(for='FirstName') First Name: 
 						td: input(type='text', name='firstName', id='FirstName')
 					tr
 						td: label(for='LastName') Last Name: 
 						td: input(type='text', name='lastName', id='LastName')
-					tr
-						td: label(for='email') Email:
-						td: input(type='text', name='email', id='email')
 					tr
 						td: label(for='password') Password: 
 						td: input(type='password', name='password', id='password')
@@ -27,8 +27,5 @@ block content
 					tr
 						td: label(for='verifyPassword') Verify Password: 
 						td: input(type='password', name='verifyPassword', id='verifyPassword')
-					tr
-						td: label(for='displayName') Display Name: 
-						td: input(type='text', name='displayName', id='displayName')
 			p
 				input(type='submit', value='Register')

@@ -12,9 +12,10 @@
     "serverName": "Off-The-Record",
     "session": {
         "cookie": { "maxAge" : 18000000, "secure": true }, 
+        "hash": { "salt": "off-the-record" },
         "key": "off-the-record.sid",
-        "resave": true,
-        "saveUninitialized": true,
+        "resave": false,
+        "saveUninitialized": false,
         "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
     },
     "shutdownTimeout": 5000
