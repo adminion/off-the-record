@@ -10,9 +10,9 @@ fi
 # install ubuntu package dependencies
 sudo apt-get update
 sudo apt-get install -y openssl nodejs mongodb
-sudo npm install 
+sudo npm install --production
 
-if [ ! -e 'config/development.json' ] 
+if [ ! -f 'config/development.json' ] 
 then 
     # create empty config files
     bash -c "cat > config/development.json"<<EOF
@@ -29,11 +29,13 @@ fi
 if [ "$dev" -eq "0" ] 
 then
     # look for existing upstart script
-    if [ -e '/etc/init/off-the-record.conf' ]
+    if [ -f '/etc/init/off-the-record.conf' ]
     then
         # remove it, if present
         sudo rm /etc/init/off-the-record.conf
     fi
+
+    here=`pwd`
 
     # create upstart job
     sudo bash -c "cat > /etc/init/off-the-record.conf" <<EOF
