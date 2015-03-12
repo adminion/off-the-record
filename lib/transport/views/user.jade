@@ -10,12 +10,17 @@ block content
         h2= userInfo.username
         table(id="profile-table")
             tbody
-                each propName in Object.keys(userInfo.profile)
-                    if userInfo.profile[propName]
-                        tr
-                            td=propName
-                            td=userInfo.profile[propName]
-        if (userInfo.friendRequest && userInfo.relationship < relationships.PENDING_FRIENDS)
-            button(id="friendRequest", value=userInfo._id) friend request
+                if userInfo.profile
+                    each propName in Object.keys(userInfo.profile.toObject())
+                        if userInfo.profile[propName]
+                            tr
+                                td=propName
+                                td=userInfo.profile[propName]
+        - console.log(userInfo.relationship + ', ' + relationships.PENDING_FRIENDS);
+        if (userInfo.friendRequest)
+            button(id="friendRequest", value=userInfo.username) friend request
+        if (userInfo.pendingRequest)
+            button(id="acceptRequest", value=userInfo.username) accept request
+            button(id="denyRequest", value=userInfo.username) deny request
         if userInfo.chatRequest
             button(id="chatRequest") chat request
