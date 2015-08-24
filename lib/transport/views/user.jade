@@ -1,29 +1,12 @@
 extends layout
 
 block socketio
-    script(src='/socket.io/socket.io.js')
-    script(src='/scripts/off-the-record.js')
-    script(src='/scripts/user.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/scripts/off-the-record.js')
+  script(src='/scripts/user.js')
 
 block content
-    #contents
-        h2= userInfo.username
-        table(id="profile-table")
-            tbody
-                if userInfo.profile
-                    each propName in Object.keys(userInfo.profile.toObject())
-                        if userInfo.profile[propName]
-                            tr
-                                td=propName
-                                td=userInfo.profile[propName]
-        - console.log('user.jade: userInfo', userInfo);
-        if (userInfo.friendRequest)
-            button(id="friendRequest", value=userInfo.username) friend request
-        if (userInfo.pendingRequest)
-            if (request.user._id.equals(userInfo.friendship.requester._id))
-                button(id="cancelRequest", value=userInfo.username) cancel request
-            else 
-                button(id="acceptRequest", value=userInfo.username) accept request
-                button(id="denyRequest", value=userInfo.username) deny request
-        if (userInfo.startConversation)
-            button(id="startConversation") start conversation
+  #contents
+    h2(id="username-heading")
+    table(id="profile-table")
+    ul(id="interaction-buttons-list")

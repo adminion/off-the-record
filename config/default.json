@@ -1,22 +1,26 @@
 {
-    "host": "localhost", 
-    "cert": ".ssl/otrd-cert.pem",
-    "key": ".ssl/otrd-key.pem",
-    "mongodb": {
-        "uri": "mongodb://localhost/off-the-record",
-        "options": {
-            "auto_reconnect": true
-        }
+  "host": "localhost", 
+  "cert": ".ssl/otrd-cert.pem",
+  "key": ".ssl/otrd-key.pem",
+  "mongoose": {
+    "conversationCollectionName": "",
+    "conversationModelName": "Conversation",
+    "options": {
+      "auto_reconnect": true
     },
-    "port": "443",
-    "serverName": "Off-The-Record",
-    "session": {
-        "cookie": { "maxAge" : 18000000, "secure": true }, 
-        "hash": { "salt": "off-the-record" },
-        "key": "off-the-record.sid",
-        "resave": false,
-        "saveUninitialized": false,
-        "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
-    },
-    "shutdownTimeout": 5000
+    "personCollectionName": "",
+    "personModelName": "User",
+    "uri": "mongodb://localhost/off-the-record"
+  },
+  "port": "443",
+  "serverName": "Off-The-Record",
+  "session": {
+    "cookie": { "maxAge" : 18000000, "secure": true }, 
+    "hash": { "salt": "off-the-record" },
+    "key": "off-the-record.sid",
+    "resave": false,
+    "saveUninitialized": false,
+    "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
+  },
+  "shutdownTimeout": 5000
 }

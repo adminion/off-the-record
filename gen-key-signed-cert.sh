@@ -9,11 +9,11 @@
 # if the length of $1 is not zero
 if [ $1 ]
 then
-    # set serverName to $1
-    serverName=$1
+  # set serverName to $1
+  serverName=$1
 else
-    # set serverName to default: "otr"
-    serverName="otrd"
+  # set serverName to default: "otr"
+  serverName="otrd"
 fi
 
 # ouput the server name to be used

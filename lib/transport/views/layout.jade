@@ -39,7 +39,7 @@ html
                                 // this would be a good place for a banner image
                        block session
                             #session
-                                if (request.session.passport.user)
+                                if (request.session.passport)
                                     span Logged on as 
                                         a(href='/profile') #{request.session.passport.user}
                                         | &nbsp;[&nbsp;
@@ -54,7 +54,7 @@ html
                                         | &nbsp;]
                         block nav
                             #nav
-                                if (links && request.session.passport.user)
+                                if (links && request.session.passport)
                                     ul#links
                                         - var foo = 0;
                                         each url, title in links

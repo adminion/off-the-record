@@ -2,16 +2,16 @@
   "name": "off-the-record",
   "description": "Chat for the paranoid..",
   "version": "0.0.1",
-  "author": "Jeff Harris <techjeffharris@gmail.com> (http://intangiblehost.net)",
+  "author": {
+    "name": "Jeff Harris",
+    "email": "techjeffharris@gmail.com",
+    "website": "http://intangiblehost.net)"
+  },
   "contributors": [
     "Zane <ydzane@gmail.com>"
   ],
-  "preferGlobal": true,
-  "bin": {
-    "off-the-record": "./off-the-record.sh"
-  },
   "scripts": {
-    "start": "./off-the-record.sh"
+    "start": "node server.js"
   },
   "main": "lib/index.js",
   "browser": "lib/transport/client/bundle.js",
@@ -38,7 +38,7 @@
     "https"
   ],
   "dependencies": {
-    "async": "0.x",
+    "async": "1.x",
     "body-parser": "1.x",
     "browserify": "6.x",
     "config": "1.x",
@@ -47,12 +47,12 @@
     "cookie-parser": "1.x",
     "express": "4.x",
     "express-session": "1.x",
-    "friends-of-friends": "1.x",
+    "friends-of-friends": "3.x",
     "jade": "1.x",
     "method-override": "2.x",
-    "mongoose": "3.8.x",
+    "mongoose": "4.x",
     "morgan": "1.x",
-    "passport": "0.x",
+    "passport": "0.2.x",
     "passport-local": "1.x",
     "passport-local-mongoose": "1.x",
     "passport.socketio": "3.x",

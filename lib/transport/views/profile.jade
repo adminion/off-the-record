@@ -38,7 +38,7 @@ block content
             | &nbsp;
         table(id="privacy-table")
             tbody
-                each propName, key in ['profile', 'friendRequest', 'startConversation']
+                each propName, key in ['profile', 'search', 'friendRequest', 'startConversation']
                     tr
                         td.propName #{propName}
                         td.editable #{privacy[request.user.privacy[propName]]}

@@ -14,9 +14,9 @@ CHANGELOG
 * updated `transport:http` to always use https (leftover from adminion)
 * modified ssl module to only output pathnames not actual data.
 * added http routes and socket.io server api to README.md
-* replaced [mongoose-friends](https://github.com/numbers1311407/mongoose-friends) with native solution
-    - separate collection for friendships
-    - plugin for AccountSchema provides statics and instance methods
+* replaced [mongoose-friends](https://github.com/numbers1311407/mongoose-friends) with native solution [friends-of-friends](https://github.com/adminion/friends-of-friends)
+  - separate collection for friendships
+  - plugin for AccountSchema provides statics and instance methods
 * users can view/edit their profile and privacy settings
 * users can search for other accounts (returns friends, friendsOfFriends, and nonFriends)
 * removed route `/friends/:friendId` in favor of `/profile/:email` so we don't have to update two pages that effectively do the same thing
