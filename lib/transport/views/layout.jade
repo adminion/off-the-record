@@ -1,71 +1,71 @@
 doctype html
 html
-    head
-        block head
-            title= env.serverName
-            block styles
-                link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
-            block scripts
-                script(src='/scripts/jquery.js') 
-                block socketio
-    body
-        block wrapper
-            #wrapper
-                block header
-                    #header
-                        block breadcrumbs
-                            #breadcrumbs
-                                // breadcrumbs leave a trail as players navigate the server
-                                h1
-                                    - // remove everything after and including the '?'
-                                    - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
-                                    - // split the string by '/' into an array
-                                    - breadcrumbs = breadcrumbs.split('/')
-                                    - // for each item in the array
-                                    - each crumb, id in breadcrumbs
-                                        if (!id)
-                                            a(href='/') #{env.serverName}
-                                        else
-                                            if (!!crumb)
-                                                | &nbsp;/&nbsp;
-                                                - var url = ''
-                                                - for (var i=1; i<=id   ; i++)
-                                                    - url += '/' + breadcrumbs[i]
-                                                    //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
-                                                a(href=url) #{crumb}
-                        block banner
-                            #banner
-                                h2= env.package.description
-                                // this would be a good place for a banner image
-                       block session
-                            #session
-                                if (request.session.passport)
-                                    span Logged on as 
-                                        a(href='/profile') #{request.session.passport.user}
-                                        | &nbsp;[&nbsp;
-                                        a(href='/logoff') Logoff
-                                        | &nbsp;]&nbsp;
-                                else
-                                    span Not logged on. 
-                                        | [&nbsp; 
-                                        a(href='/logon') Logon 
-                                        | &nbsp;|&nbsp;
-                                        a(href='/register') Register
-                                        | &nbsp;]
-                        block nav
-                            #nav
-                                if (links && request.session.passport)
-                                    ul#links
-                                        - var foo = 0;
-                                        each url, title in links
-                                            if (foo++)
-                                                | &nbsp;|&nbsp;
-                                                li: a(href=url) #{title}
-                                            else
-                                                li: a(href=url) #{title}
-                block body
-                    #body
-                        block content
-                            #content
-                                    
-                                    
+  head
+    block head
+      title= env.serverName
+      block styles
+        link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
+      block scripts
+        script(src='/scripts/jquery.js') 
+        block socketio
+  body
+    block wrapper
+      #wrapper
+        block header
+          #header
+            block breadcrumbs
+              #breadcrumbs
+                // breadcrumbs leave a trail as players navigate the server
+                h1
+                  - // remove everything after and including the '?'
+                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
+                  - // split the string by '/' into an array
+                  - breadcrumbs = breadcrumbs.split('/')
+                  - // for each item in the array
+                  - each crumb, id in breadcrumbs
+                    if (!id)
+                      a(href='/') #{env.serverName}
+                    else
+                      if (!!crumb)
+                        | &nbsp;/&nbsp;
+                        - var url = ''
+                        - for (var i=1; i<=id   ; i++)
+                          - url += '/' + breadcrumbs[i]
+                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
+                        a(href=url) #{crumb}
+            block banner
+              #banner
+                h2= env.package.description
+                // this would be a good place for a banner image
+             block session
+              #session
+                if (request.session.passport.user)
+                  span Logged on as 
+                    a(href='/profile') #{request.session.passport.user}
+                    | &nbsp;[&nbsp;
+                    a(href='/logoff') Logoff
+                    | &nbsp;]&nbsp;
+                else
+                  span Not logged on. 
+                    | [&nbsp; 
+                    a(href='/logon') Logon 
+                    | &nbsp;|&nbsp;
+                    a(href='/register') Register
+                    | &nbsp;]
+            block nav
+              #nav
+                if (links && request.session.passport.user)
+                  ul#links
+                    - var foo = 0;
+                    each url, title in links
+                      if (foo++)
+                        | &nbsp;|&nbsp;
+                        li: a(href=url) #{title}
+                      else
+                        li: a(href=url) #{title}
+        block body
+          #body
+            block content
+              #content
+                  
+                  

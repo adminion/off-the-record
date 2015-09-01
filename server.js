@@ -9,6 +9,10 @@ Error.stackTraceLimit = Infinity;
 
 server = new OffTheRecord();
 
+server.on('error', function (err) {
+  throw err;
+});
+
 var debug = require('debug')(server.env().context());
 
 process.on('SIGINT', function () {

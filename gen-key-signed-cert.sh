@@ -6,6 +6,8 @@
 #     echo "$0: error: must be root" && exit 2
 # fi
 
+var SSL_DIR="~/.ssl"
+
 # if the length of $1 is not zero
 if [ $1 ]
 then
@@ -19,11 +21,14 @@ fi
 # ouput the server name to be used
 #echo "server name: $serverName"
 
-mkdir .ssl
+if [ ! -d ~/.ssl ] 
+  then 
+    mkdir ~/.ssl
+fi
 
-key=".ssl/$serverName-key.pem"
-csr=".ssl/$serverName-csr.pem"
-cert=".ssl/$serverName-cert.pem"
+key="$SSL_DIR/$serverName-key.pem"
+csr="$SSL_DIR/$serverName-csr.pem"
+cert="$SSL_DIR/$serverName-cert.pem"
 
 echo "generating key $key...";
 openssl genrsa -out $key
