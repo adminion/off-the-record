@@ -3,11 +3,7 @@ Off-The-Record
 
 # Chat for the paranoid.. 
 
-a boilerplate messaging app with strict privacy by default 
-
-always hosted over https, and all messages are volatile
-
-no message or file is persisted to any database, ever!
+A self-hosted volatile messaging server with strict privacy by default that is always hosted over https.
 
 ```javascript
 var OffTheRecord = require('./lib/'),
@@ -24,104 +20,79 @@ server.start();
 
 ## Install
 
-### Production install
-The setup script will download and install all system dependencies and node-module dependencies via npm, then create and start an upstart service.
+    $ npm install -g off-the-record
 
-Clone the repo with git or download a copy then open a terminal, cd to that directory, then run `./setup.sh`.  You should not use sudo for the setup script, but you must be a [sudoer](https://help.ubuntu.com/community/Sudoers) as some internal commands within the setup script use sudo.
+#### SSL Private Key and Certificate
 
-    $ git clone https://github.com/techjeffharris/off-the-record.git
-    $ cd off-the-record/
-    $ ./setup.sh
-    
-Upon successful installation, setup will create and start an upstart job by the name of `off-the-record`:
+HTTPS requires a private key and certificate.  You should purchase a Private Key and Signed Certificate if you are using Off-The-Record in production.
 
-    $ ./setup.sh
-    ...
-    off-the-record start/running, process 22709
-    off-the-record server installed!
-    $ 
+If you're developing, however, you probably don't want to purchase a professionally-signed key/certificate.  To get developing you can generate a key, create a certificate and sign it all in one command:
 
-### Development install 
-#### Dependencies
-If you plan on installing for development or testing purposes, simply pass `development` to `setup.sh`:
-   
-    $ ./setup.sh development
-    
-which will skip the upstart job parts.
-    
-#### Certificate/key
+    $ npm run gen-key-signed-cert
 
-If you're developing, you probably don't have--let alone care about having--a valid certificate.  To get started quickly you can generate a key, create a certificate and sign it all in one command:
-
-    $ ./gen-key-signed-cert.sh
-
-which will prompt you for certificate pertinents (which don't matter in dev), then create (if it doesn't exist) `.ssl/` with `otrd-cert.pem` and `otrd-key.pem` inside.
+which will prompt you for certificate attributes (which don't really matter when developing), then create (if it doesn't exist) `.ssl/` with `otrd-cert.pem` and `otrd-key.pem` inside.
 
 You may optionally provide a string to be prepended their names:
 
-    $ ./gen-key-signed-cert.sh myServer
-    
+    $ npm run gen-key-signed-cert myServer
+
 which will name the files `myServer-cert.pem` and `myServer-key.pem`, respectively.
 
-#### Starting manually
-To manually start the server, simply run `off-the-record.sh`:
+#### Starting 
+To start the server, simply run `node server`
 
-    $ ./off-the-record.sh
-    
+    $ node server
+
 ##### Enable debug output
-Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display debugging information.  To enable Off-The-Record debug messages, pass `"off-the-record*"` to the startup script:
+Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display debugging information.  To enable all Off-The-Record debug messages, set `DEBUG` to `"off-the-record*"` before starting
 
-    $ ./off-the-record.sh "off-the-record*"
-    
-Each file's output is prepended with a unique namespace, so to only enable debug output for the file `lib/transport/http.js`, you would pass "off-the-record:transport:http" to the startup script:
+    $ DEBUG="off-the-record*" node server
 
-    $ ./off-the-record.sh "off-the-record:transport:http"
-    
-To enable all debug messages (including those of express, socket.io, mongoose, etc.) pass `"*"` or `\*`:
+Each file's output is prepended with a unique namespace.  To only enable debug output for the file `lib/transport/http.js`, you would set `DEBUG="off-the-record:transport:http"`
+
+    $ DEBUG="off-the-record:transport:http" node server
+
+To enable all debug messages (including those of express, socket.io, mongoose, and several other dependencies) set  `"*"` or `\*`:
 
     $ ./off-the-record.sh "*"
     // or
     $ ./off-the-record.sh \*
-    
-*Enabling debug output will set NODE_ENV to 'developement'.  See [Configure](https://github.com/techjeffharris/off-the-record#configure) below for details.*
-
-## Uninstall
-
-Uninstalling is like installing: you must be a [sudoer](https://help.ubuntu.com/community/Sudoers).
-
-    $ ./uninstall.sh
 
 ## Configure
 Off the record is configured using [config](https://github.com/lorenwest/node-config).
 
-You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override those in `config/default.json`:
+You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override those in `config/default.json`.
 
 ```json
 {
-    "host": "localhost", 
-    "cert": ".ssl/otrd-cert.pem",
-    "key": ".ssl/otrd-key.pem",
-    "mongodb": {
-        "uri": "mongodb://localhost/off-the-record",
-        "options": {
-            "auto_reconnect": true
-        }
+  "host": "localhost", 
+  "cert": ".ssl/otrd-cert.pem",
+  "key": ".ssl/otrd-key.pem",
+  "mongoose": {
+    "conversationCollectionName": "",
+    "conversationModelName": "Conversation",
+    "options": {
+      "auto_reconnect": true
     },
-    "port": "80",
-    "serverName": "Off-The-Record",
-    "session": {
-        "cookie": { "maxAge" : 18000000, "secure": true }, 
-        "key": "off-the-record.sid",
-        "resave": true,
-        "saveUninitialized": true,
-        "secret": "notagoodsecretnoreallydontusethisone"
-    },
-    "shutdownTimeout": 5000
+    "personCollectionName": "",
+    "personModelName": "User",
+    "uri": "mongodb://localhost/off-the-record"
+  },
+  "port": "443",
+  "serverName": "Off-The-Record",
+  "session": {
+    "cookie": { "maxAge" : 18000000, "secure": true }, 
+    "hash": { "salt": "off-the-record" },
+    "key": "off-the-record.sid",
+    "resave": false,
+    "saveUninitialized": false,
+    "secret": "use sha1pass (or similar) to make your own secret!"
+  },
+  "shutdownTimeout": 5000
 }
 ```
-_You should generate your own session secret!!_
 
-## Server API
+## API
 
 ### OffTheRecord
 Exposed by `require('./lib/')`, extends nodejs [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
@@ -192,151 +163,16 @@ server.on('stopped', function onServerStopped () {
 });
 ```
 
-## HTTP Routes
-
-### Publicly Accessible Routes
-* `/`: Splash screen telling the world about off-the-record
-* `/logon`: Account logon page
-* `/logoff`: logs out the current user and kills the session
-* `/register`: A new account registration form
-
-### Routes Requiring Authentication
-* `/home`: user's home page; shows preview of friends online and conversations
-* `/profile`: user's profile; shows information about user based upon privacy preferences.
-* `/profille/:email`: other users' profiles.
-* `/search`: search friends and publicly discoverable users
-* `/convos`: a list of conversations which the user either has started or has been invited
-* `/convos/:convoID`: a particular conversation
-* `/friends`: user's list of friends
-
-## Client API
-
-### OffTheRecord
-Exposed as the `OffTheRecord` global in `window`, extends nodejs [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
-
-#### OffTheRecord(options:Object):Client
-* options `Object` An optional Object containing configuration options.
-
-Connect to an `OffTheRecord` server:
-```javascript
-var options = {
-    debug: "Jeff'sSecretServer*",
-    chunkSize: 128,
-    pickerId: 'my-file-picker'
-};
-
-var client = OffTheRecord(options);
-// or use defaults:
-var client = OffTheRecord();
-```
-
-### Client.getFriends(gotFriends:Function)
-* gotFriends `Function` Called once friends have been retreived.  Passed err (null on success) and an array of friends retreived (empty on failure).
-
-Get all friends for the current user:
-```javascript
-client.getFriends(function(err, friends) {
-    if (err) throw err;
-    for (var i=0; i< friends.length; i++) {
-        console.log('friend' + i, friends[i]);
-    }
-});
-```
-
-### Client.updateProfile(updates:Object, onceUpdated:Function)
-* updates `Object` An object containing the profile properties to be updated.
-* onceUpdated `Function` Called when update completes, passing an err (null if success) and the newly updated user.
-
-Update the current user's profile:
-```javascript
-
-var updates = {
-    firstName: "John",
-    lastName: "Doe",
-    displayName: "Unknown"
-};
-
-client.updateProfile(updates, function(err, updateUser) {
-    console.log('updated user ' + updateUser._id + '\'s profile:', updatedUser);
-});
-```
-
-
-### Client.updatePrivacy(updates:Object, onceUpdated:Function) 
-* updates `Object` An object containing the privacy properties to be updated.
-* onceUpdated `Function` Called when update completes, passing an err (null if success) and the newly updated user.
-
-Update the current user's privacy:
-```javascript
-
-var updates = {
-    firstName: "John",
-    lastName: "Doe",
-    displayName: "Unknown"
-};
-
-client.updatePrivacy(updates, function(err, updateUser) {
-    console.log('updated user ' + updateUser._id + '\'s privacy:', updatedUser);
-});
-```
-
-### Client.startConversation(invitees:Array, started:Function)
-* invitees `Array` An Array of Mongoose ObjectIds belonging to users that are invited to join the conversation.
-* started `Function` A Function called when the conversation has started which is passed the newly created conversation object.
-
-Start a conversation:
-```javascript
-var invitees = [
-    ObjectId('asdfghjkl;'),
-    ObjectId('qwertyuiop['),
-    ObjectId('zxcvbnm,.'),
-    ...
-];
-
-client.startConversation(invitees, function (convo) {
-    console.log('started conversation '+ convo._id);
-});
-```
-
-### Client.joinConversation(convoId:ObjectId, joined:Function)
-* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to join.
-* joined `Function` A function called when the join operation has completed, passed a `Boolean` `success` indicating that the message was sent. 
-
-Attempt to Join a conversation:
-```javascript
-client.joinConversation(convoId, function (success) {
-    if (success) {
-        console.log('Joined conversation ' + convoId + '!');
-    } else {
-        console.log('Failed to join conversation ' + convoId + '!');
-    }
-});
-```
-
-### Client.sendMessage(convoId:ObjectId, message:String, sent:Function)
-* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to which the message will be sent.
-* message `String` A string message to be sent to the conversation.
-
-Attempt to send a message to a conversation:
-```javascript
-client.sendMessage(convoId, 'I made it everyone!', function(success) {
-    if (!success) {
-        console.err('unable to send message to conversation ' + convoId+ '!');
-    }
-});
-```
-
-### Client.sendFiles(convoId: ObjectId, success:Function)
-* convoId `ObjectId` A Mongoose ObjectId belonging to the conversation to which the files will be sent.
-
-Send files (selected by the file picker specified at instantiation) to a conversation: 
-```javascript
-client.sendFiles(convoId, function(success) {
-    if (!success) {
-        console.err('unable to send files to conversation ' + convoId+ '!');
-    }
-});
-```
-
 ## LICENSE
-BSD 3-CLAUSE
+Copyright (c) 2014-2015 Jeff Harris
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

@@ -1,3 +1,4 @@
+#!/usr/local/bin/node
 
 var OffTheRecord = require('./lib/'),
   interrupt,
@@ -8,10 +9,6 @@ var OffTheRecord = require('./lib/'),
 Error.stackTraceLimit = Infinity;
 
 server = new OffTheRecord();
-
-server.on('error', function (err) {
-  throw err;
-});
 
 var debug = require('debug')(server.env().context());
 

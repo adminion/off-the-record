@@ -20,7 +20,7 @@
     "key": "off-the-record.sid",
     "resave": false,
     "saveUninitialized": false,
-    "secret": "$1$lbr0SzZt$neYMrLZD/UfOcoxxg7Onl."
+    "secret": "use sha1pass (or similar) to make your own secret!"
   },
   "shutdownTimeout": 5000
 }

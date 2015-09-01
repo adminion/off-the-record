@@ -5,37 +5,43 @@
   "author": {
     "name": "Jeff Harris",
     "email": "techjeffharris@gmail.com",
-    "website": "http://intangiblehost.net)"
+    "website": "http://intangiblehost.net"
   },
   "contributors": [
-    "Zane <ydzane@gmail.com>"
+    {   
+      "name": "Zane",
+      "email": "ydzane@gmail.com"
+    }
   ],
   "scripts": {
+    "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
+    "postinstall": "bin/gen-config-files.sh",
     "start": "node server.js"
   },
   "main": "lib/index.js",
-  "browser": "lib/transport/client/bundle.js",
+  "bin": "./server.js",
   "license": {
     "type": "BSD-3-Clause",
     "file:": "LICENSE"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/adminion/off-the-record.git"
+    "url": "https://github.com/adminion/off-the-record.git"
   },
   "bugs": {
     "url": "https://github.com/techjeffharris/off-the-record/issues"
   },
   "keywords": [
+    "binary",
     "chat",
-    "off-the-record",
-    "private",
+    "encrypted",
     "file",
     "files",
+    "https",
+    "off-the-record",
+    "private",
     "transfer",
-    "secure",
-    "encrypted",
-    "https"
+    "secure"
   ],
   "dependencies": {
     "async": "1.x",

@@ -6,7 +6,7 @@
 #     echo "$0: error: must be root" && exit 2
 # fi
 
-var SSL_DIR="~/.ssl"
+SSL_DIR=".ssl"
 
 # if the length of $1 is not zero
 if [ $1 ]
@@ -21,9 +21,9 @@ fi
 # ouput the server name to be used
 #echo "server name: $serverName"
 
-if [ ! -d ~/.ssl ] 
+if [ ! -d $SSL_DIR ] 
   then 
-    mkdir ~/.ssl
+    mkdir $SSL_DIR
 fi
 
 key="$SSL_DIR/$serverName-key.pem"
