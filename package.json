@@ -1,7 +1,7 @@
 {
   "name": "off-the-record",
   "description": "Chat for the paranoid..",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": {
     "name": "Jeff Harris",
     "email": "techjeffharris@gmail.com",
@@ -51,6 +51,7 @@
     "connect-flash": "0.x",
     "connect-mongo": "0.x",
     "cookie-parser": "1.x",
+    "debug": "*",
     "express": "4.x",
     "express-session": "1.x",
     "friends-of-friends": "3.x",
@@ -67,8 +68,5 @@
     "socket.io": "1.x",
     "techjeffharris-utils": "1.x",
     "valid-url": "^1.0.9"
-  },
-  "devDependencies": {
-    "debug": "*"
   }
 }
