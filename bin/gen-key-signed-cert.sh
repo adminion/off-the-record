@@ -15,7 +15,7 @@ then
   serverName=$1
 else
   # set serverName to default: "otr"
-  serverName="otrd"
+  serverName="off-the-record"
 fi
 
 # ouput the server name to be used

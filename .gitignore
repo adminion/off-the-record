@@ -3,3 +3,5 @@ npm-debug.log
 config/development.json
 config/production.json
 .ssl/*.pem
+*.sublime-project
+*.sublime-workspace

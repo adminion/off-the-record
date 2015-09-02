@@ -1,7 +1,23 @@
 {
-  "host": "localhost", 
-  "cert": ".ssl/otrd-cert.pem",
-  "key": ".ssl/otrd-key.pem",
+  "serverName": "Off-The-Record",
+  "shutdownTimeout": 5000,
+  "http": {
+    "host": "localhost", 
+    "port": "443",
+    "session": {
+      "cookie": { "maxAge" : 18000000, "secure": true }, 
+      "hash": { "salt": "off-the-record" },
+      "key": "off-the-record.sid",
+      "resave": false,
+      "saveUninitialized": false,
+      "secret": "use sha1pass (or similar) to make your own secret!"
+    },
+    "ssl": {
+      "cert": "off-the-record-cert.pem",
+      "key": "off-the-record-key.pem",
+      "prefix": ".ssl"
+    } 
+  },
   "mongoose": {
     "conversationCollectionName": "",
     "conversationModelName": "Conversation",
@@ -11,16 +27,5 @@
     "personCollectionName": "",
     "personModelName": "User",
     "uri": "mongodb://localhost/off-the-record"
-  },
-  "port": "443",
-  "serverName": "Off-The-Record",
-  "session": {
-    "cookie": { "maxAge" : 18000000, "secure": true }, 
-    "hash": { "salt": "off-the-record" },
-    "key": "off-the-record.sid",
-    "resave": false,
-    "saveUninitialized": false,
-    "secret": "use sha1pass (or similar) to make your own secret!"
-  },
-  "shutdownTimeout": 5000
+  }
 }
