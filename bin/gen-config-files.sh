@@ -8,7 +8,7 @@ if [ ! -f 'config/development.json' ]
 }
 EOF
 
-  chmod 755 config/development.json
+  chmod 644 config/development.json
 
 fi
 

@@ -16,7 +16,8 @@
   "scripts": {
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "postinstall": "bin/gen-config-files.sh",
-    "start": "node server.js"
+    "start": "node server.js",
+    "wheresmyconfig": "echo $(dirname $(readlink $(which off-the-record)))/config/"
   },
   "main": "lib/index.js",
   "bin": "./server.js",
@@ -47,13 +48,13 @@
     "async": "1.x",
     "body-parser": "1.x",
     "browserify": "6.x",
-    "config": "1.x",
     "connect-flash": "0.x",
     "connect-mongo": "0.x",
     "cookie-parser": "1.x",
     "debug": "*",
     "express": "4.x",
     "express-session": "1.x",
+    "extend": "3.x",
     "friends-of-friends": "3.x",
     "jade": "1.x",
     "method-override": "2.x",

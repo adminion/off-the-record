@@ -26,18 +26,27 @@ You will need to have `nodejs` and `mongodb` installed to run the server.  You w
 
 ### Production
 
-Installing off-the-record globally will create a binary in your system prefix. 
+Installing off-the-record globally will create a binary that is easy to run. 
 
     $ npm install -g off-the-record
+
+See [folders | npm Documentation](https://docs.npmjs.com/files/folders) for more information on global packages.
 
 ### Development
 
 If you're looking to contribute/develop you should omit the `-g` option to install locally to the current folder.  See [#contributing](Contributing) below. 
 
+    $ npm install off-the-record
+
 ## Configure
 Off the record is configured using [config](https://github.com/lorenwest/node-config).
 
-You might want to define some custom configuration options in `config/production.json` or `config/development.json` to override those in `config/default.json`.
+You might want to define some custom configuration options in `./config/production.json` or `config/development.json` to override those in `config/default.json`.
+
+Where you find your config files depends on how you installed off-the-record.  If you installed locally, config files will be in `./node_modules/off-the-record/config/`.  If you installed globally, you'll need to figure out where the symbolic link off-the-record was created, where it points do, and then get the directory... or you can just run this code and it will tell where they are...
+
+    $ npm run wheresmyconfig
+
 
 ```json
 {
@@ -57,7 +66,7 @@ You might want to define some custom configuration options in `config/production
     "ssl": {
       "cert": "off-the-record-cert.pem",
       "key": "off-the-record-key.pem",
-      "prefix": ".ssl"
+      "prefix": ""
     } 
   },
   "mongoose": {
@@ -111,6 +120,8 @@ which will name the files `myServer-cert.pem` and `myServer-key.pem`, respective
 To start the server, run `off-the-record`
 
     $ off-the-record
+
+If you are hosting your own server in production, set `NODE_ENV=production` to make it go harder, better, faster, stronger.
 
 ### Enable debug output
 Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display debugging information.  To enable all Off-The-Record debug messages, set export `DEBUG` environment var to `"off-the-record*"` before starting
