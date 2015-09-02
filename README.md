@@ -91,7 +91,7 @@ When providing your own key and certificate, modify `ssl.prefix` in `config/prod
       }
     }
 
-**WARNING:** *Do not move your key/cert files to `.ssl/` as it is inside this package and npm will delete this package if instructed to do so.  You don't want to lose your cert and key do you?
+**WARNING:** *Do not move your key/cert files to `.ssl/` as it is inside this package and npm will delete this package if instructed to do so.  You don't want to lose your cert and key do you?*
 
 #### Self Signed
 
