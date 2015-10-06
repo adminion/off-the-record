@@ -1,9 +1,11 @@
 extends layout
 
-block socketio
+block scripts
   script(src='/socket.io/socket.io.js')
   script(src='/scripts/off-the-record.js')
   script(src='/scripts/user.js')
+block styles
+  link(ref='/styles/user.css')
 
 block content
   #contents

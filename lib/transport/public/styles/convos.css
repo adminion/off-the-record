@@ -1,0 +1,11 @@
+.convoInputs {
+	display:none;
+} 
+
+#startConvoBtn {
+	display:block;
+}
+
+#start {
+    padding: 10px;
+}

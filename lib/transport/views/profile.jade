@@ -1,46 +1,48 @@
 extends layout
 
-block socketio
-    script(src="/socket.io/socket.io.js")
-    script(src='/scripts/off-the-record.js')
-    script(src='/scripts/profile.js')
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script(src='/scripts/off-the-record.js')
+  script(src='/scripts/profile.js')
+block styles
+  link(rel='stylesheet' href='/styles/profile.css' type="text/css")
 
 block content
-    #contents
-        h2 User:
-        table(id="user-table")
-            tbody
-                each propName in ['_id', 'username']
-                    tr
-                        td.propName #{propName}
-                        td #{request.user[propName]}
-        h2 Profile:
-            | &nbsp;
-            button(id="edit-profile") edit
-            | &nbsp;
-            button(id="cancel-profile") cancel
-            | &nbsp;
-            button(id="save-profile") save
-            | &nbsp;
-        table(id="profile-table")
-            tbody
-                each propName in ['firstName', 'lastName']
-                    tr
-                        td.propName #{propName}
-                        td.editable #{request.user.profile[propName]}
-        h2 Privacy:
-            | &nbsp;
-            button(id="edit-privacy") edit
-            | &nbsp;
-            button(id="cancel-privacy") cancel
-            | &nbsp;
-            button(id="save-privacy") save
-            | &nbsp;
-        table(id="privacy-table")
-            tbody
-                each propName, key in ['profile', 'search', 'friendRequest', 'startConversation']
-                    tr
-                        td.propName #{propName}
-                        td.editable #{privacy[request.user.privacy[propName]]}
-        h2 Danger Zone:
-            button(id="delete-account") delete account
+  #contents
+    h2 User:
+    table(id="user-table")
+      tbody
+        each propName in ['_id', 'username']
+          tr
+            td.propName #{propName}
+            td #{request.user[propName]}
+    h2 Profile:
+      | &nbsp;
+      button(id="edit-profile") edit
+      | &nbsp;
+      button(id="cancel-profile") cancel
+      | &nbsp;
+      button(id="save-profile") save
+      | &nbsp;
+    table(id="profile-table")
+      tbody
+        each propName in ['firstName', 'lastName']
+          tr
+            td.propName #{propName}
+            td.editable #{request.user.profile[propName]}
+    h2 Privacy:
+      | &nbsp;
+      button(id="edit-privacy") edit
+      | &nbsp;
+      button(id="cancel-privacy") cancel
+      | &nbsp;
+      button(id="save-privacy") save
+      | &nbsp;
+    table(id="privacy-table")
+      tbody
+        each propName, key in ['profile', 'search', 'friendRequest', 'startConversation']
+          tr
+            td.propName #{propName}
+            td.editable #{privacy[request.user.privacy[propName]]}
+    h2 Danger Zone:
+      button(id="delete-account") delete account

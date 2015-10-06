@@ -1,16 +1,18 @@
 extends layout
 
-block socketio
-    script(src='/socket.io/socket.io.js')
-    script(src='/scripts/off-the-record.js')
-    script(src='/scripts/friends.js')
-    
+block scripts
+  script(src='/socket.io/socket.io.js')
+  script(src='/scripts/off-the-record.js')
+  script(src='/scripts/friends.js')
+block styles
+  link(ref='/styles/friends.css')
+  
 block content
-    #content
-        h2 Friends
-        ul#friends
-        h2 Friend Requests
-        h3 You've Sent
-        ul#requests-sent
-        h3 You've Received
-        ul#requests-received
+  #content
+    h2 Friends
+    ul#friends
+    h2 Friend Requests
+    h3 You've Sent
+    ul#requests-sent
+    h3 You've Received
+    ul#requests-received

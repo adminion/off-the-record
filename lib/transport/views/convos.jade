@@ -1,12 +1,24 @@
 extends layout
 
-block socketio
-    script(src='/socket.io/socket.io.js')
-    script(src='/scripts/off-the-record.js')
-    script(src='/scripts/convo.js')
+block scripts
+  script(src='/socket.io/socket.io.js')
+  script(src='/scripts/off-the-record.js')
+  script(src='/scripts/convos.js')
+
+block styles
+  link(href='/styles/convos.css' rel="stylesheet" type="text/css")
+
 block content
-    #content
-        h2 Conversations: [&nbsp;
-            a(id='startConvo', href="/startConvo") Start
-            | &nbsp;]
-        ul#convos
+  #content
+    h2 Conversations
+
+    div#convoInputs
+      button(id='startConvoBtn' class='convoInputs') Start
+      input(id='starchInput' class='convoInputs' type="search" placeholder="bob")
+      label(id='searchResults' class='convoInputs' for='searchResults') search results
+      ul(id='searchResults' class='convoInputs') 
+      label(id='searchResults' class='convoInputs' for='invitees') invitees
+      ul(id='invitees' class='convoInputs')
+      button(id='createConvoBtn' class='convoInputs') Create
+      button(id='cancelConvoBtn' class='convoInputs') Cancel
+    ul#convos No active conversations

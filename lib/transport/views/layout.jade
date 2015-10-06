@@ -2,12 +2,11 @@ doctype html
 html
   head
     block head
+      link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
       title= env.serverName
-      block styles
-        link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
+      script(src='/scripts/jquery.js')
       block scripts
-        script(src='/scripts/jquery.js') 
-        block socketio
+      block styles
   body
     block wrapper
       #wrapper
