@@ -1,31 +1,28 @@
 extends layout
 
+block session
 block content
-	#content
-		h2 Register			
+  #content
+    h2 Register
+      | &nbsp;[&nbsp;
+      a(href='/logon') Logon
+      | &nbsp;]&nbsp;
+    if (err)
+      p.err=err
 
-		if (err)
-			p.err=err
-
-		form(action='/register', method='POST')
-			input(type='hidden', name='redir', value=redir)
-			table
-				tbody
-					tr
-						td: label(for='username') Username: 
-						td: input(type='text', name='username', id='username')
-					tr
-						td: label(for='FirstName') First Name: 
-						td: input(type='text', name='firstName', id='FirstName')
-					tr
-						td: label(for='LastName') Last Name: 
-						td: input(type='text', name='lastName', id='LastName')
-					tr
-						td: label(for='password') Password: 
-						td: input(type='password', name='password', id='password')
-					// need to implement form validator to verify their passwords match
-					tr
-						td: label(for='verifyPassword') Verify Password: 
-						td: input(type='password', name='verifyPassword', id='verifyPassword')
-			p
-				input(type='submit', value='Register')
+    form(action='/register', method='POST')
+      input(type='hidden', name='redir', value=redir)
+      table
+        tbody
+          tr
+            td: label(for='username') Username: 
+            td: input(type='text', name='username', id='username')
+          tr
+            td: label(for='password') Password: 
+            td: input(type='password', name='password', id='password')
+          // need to implement form validator to verify their passwords match
+          tr
+            td: label(for='verifyPassword') Verify Password: 
+            td: input(type='password', name='verifyPassword', id='verifyPassword')
+      p
+        input(type='submit', value='Register')
