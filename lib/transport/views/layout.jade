@@ -2,9 +2,17 @@ doctype html
 html
   head
     block head
-      link(href="/styles/off-the-record.css", rel="stylesheet", type="text/css")
+      meta(name="viewport" content="width=device-width, initial-scale=1")
+      // Bootstrap: Latest compiled and minified CSS
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+      // Bootstrap: Optional theme
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
       title= env.serverName
       script(src='/scripts/jquery.js')
+      // Bootstrap: Latest compiled and minified JavaScript
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+
+      link(rel="stylesheet", href="/styles/off-the-record.css")
       block scripts
       block styles
   body
@@ -12,31 +20,12 @@ html
       #wrapper
         block header
           #header
-            block breadcrumbs
-              #breadcrumbs
-                // breadcrumbs leave a trail as players navigate the server
-                h1
-                  - // remove everything after and including the '?'
-                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
-                  - // split the string by '/' into an array
-                  - breadcrumbs = breadcrumbs.split('/')
-                  - // for each item in the array
-                  - each crumb, id in breadcrumbs
-                    if (!id)
-                      a(href='/') #{env.serverName}
-                    else
-                      if (!!crumb)
-                        | &nbsp;/&nbsp;
-                        - var url = ''
-                        - for (var i=1; i<=id   ; i++)
-                          - url += '/' + breadcrumbs[i]
-                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
-                        a(href=url) #{crumb}
             block banner
               #banner
-                h2= env.package.description
+                h1=env.package.name
+                h4=env.package.description
                 // this would be a good place for a banner image
-             block session
+            block session
               #session
                 if (request.session.passport.user)
                   span Logged on as 
@@ -62,6 +51,26 @@ html
                         li: a(href=url) #{title}
                       else
                         li: a(href=url) #{title}
+            block breadcrumbs
+              #breadcrumbs
+                // breadcrumbs leave a trail as players navigate the server
+                h4
+                  - // remove everything after and including the '?'
+                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
+                  - // split the string by '/' into an array
+                  - breadcrumbs = breadcrumbs.split('/')
+                  - // for each item in the array
+                  - each crumb, id in breadcrumbs
+                    if (!id)
+                      a(href='/') #{env.serverName}
+                    else
+                      if (!!crumb)
+                        | &nbsp;/&nbsp;
+                        - var url = ''
+                        - for (var i=1; i<=id   ; i++)
+                          - url += '/' + breadcrumbs[i]
+                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
+                        a(href=url) #{crumb} 
         block body
           #body
             block content
