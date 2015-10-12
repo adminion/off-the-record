@@ -11,13 +11,17 @@
     {   
       "name": "Zane",
       "email": "ydzane@gmail.com"
+    },
+    {
+      "name": "Kyle Pasco",
+      "email": "kylepasco@gmail.com"
     }
   ],
   "scripts": {
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "postinstall": "bin/gen-config-files.sh",
     "start": "node server.js",
-    "wheresmyconfig": "echo $(dirname $(readlink $(which off-the-record)))/config/"
+    "wheresmyconfig": "bin/wheresmyconfig.sh"
   },
   "main": "lib/index.js",
   "bin": "./server.js",

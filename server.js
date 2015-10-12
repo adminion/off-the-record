@@ -1,5 +1,7 @@
 #!/usr/local/bin/node
 
+process.env.OTR_PREFIX = __dirname;
+
 var OffTheRecord = require('./lib/'),
   interrupt,
   server,
