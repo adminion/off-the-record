@@ -18,35 +18,50 @@ server.on('started', function () {
 server.start();
 ```
 
+If you would like to contribute, please take a look at our [contribution guide](#contributing).
+
 ## Install
 
 ### Dependencies
 
-You will need to have `nodejs` and `mongodb` installed to run the server.  You will also need `openssl` installed if you want to generate a key and self-signed certificate.
+You will need to have `nodejs` and `mongodb` installed to run the server.  You will also need `openssl` installed if you want to generate a private key and self-signed certificate.
 
-### Production
+### Global
 
-Installing off-the-record globally will create a binary that is easy to run. 
+Installing off-the-record globally will create a binary that is easy to run from any directory
 
     $ npm install -g off-the-record
 
-See [folders | npm Documentation](https://docs.npmjs.com/files/folders) for more information on global packages.
+See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally) for more information.
 
-### Development
+### Local
 
-If you're looking to contribute/develop you should omit the `-g` option to install locally to the current folder.  See [#contributing](Contributing) below. 
+If you're looking to develop your own app using off-the-record or make a contribution you should omit the `-g` option to install locally.  
 
     $ npm install off-the-record
 
+See [Installing npm packages locally](https://docs.npmjs.com/getting-started/installing-npm-packages-locally). 
+
 ## Configure
-Off the record is configured using [config](https://github.com/lorenwest/node-config).
 
-You might want to define some custom configuration options in `./config/production.json` or `config/development.json` to override those in `config/default.json`.
+Off the record uses a 3 step configuration process:
 
-Where you find your config files depends on how you installed off-the-record.  If you installed locally, config files will be in `./node_modules/off-the-record/config/`.  If you installed globally, you'll need to figure out where the symbolic link off-the-record was created, where it points do, and then get the directory... or you can just run this code and it will tell where they are...
+1) Load the default configuration (See [Default Configuration](#default-configuration) below)
 
-    $ npm run wheresmyconfig
+2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used.
 
+    $ NODE_ENV=production off-the-record            # "production.json" will be used
+
+3) Load configuration overrides parsed from the json value of `OTR_CONFIG`, if set.  This allows you to provide additional configuration overrides at runtime after your environment-specific configuration has been applied. 
+
+    $ OTR_CONFIG='{ "serverName": "my-server" }' node off-the-record
+
+### Custom Directory
+By default, the configuration directory will be `config/` relative to your installation path.  You may optionally specify another directory via the `OTR_CONFIG_DIR` environment variable.
+
+    $ OTR_CONFIG_DIR=/path/to/your/config/ off-the-record
+
+### Default Configuration
 
 ```json
 {
@@ -84,11 +99,13 @@ Where you find your config files depends on how you installed off-the-record.  I
 
 ### SSL Private Key and Certificate
 
+HTTPS servers require a private key and certificate.  We make it easy to generate a key and self-signed certificate to make development easier (see [instructions](#self-signed) below), but you should purchase a signed certificate from a trusted Certificate Authority if you are using Off-The-Record in the real world.
+
+*You are strongly advised to keep your private key and certificate files in a safe place __outside__ of your installation folder unless you're ok with them being deleted by `npm remove`.*
+
 #### Professionally Signed
 
-HTTPS requires a private key and certificate.  You should purchase a Private Key and Signed Certificate if you are using Off-The-Record in production.  
-
-When providing your own key and certificate, modify `ssl.prefix` in `config/production.json` to point to the folder in which your key and cert live. 
+When providing your own key and certificate, set `http.ssl.prefix` to the folder in which your key and certificate live. 
 
     {
       "http": {
@@ -100,49 +117,44 @@ When providing your own key and certificate, modify `ssl.prefix` in `config/prod
       }
     }
 
-**WARNING:** *Do not move your key/cert files to `.ssl/` as it is inside this package and npm will delete this package if instructed to do so.  You don't want to lose your cert and key do you?*
+#### Self-Signed
 
-#### Self Signed
-
-If you're developing, however, you probably don't want to purchase a professionally-signed key/certificate.  To get developing you can generate a key, create a certificate and sign it all in one command:
+If you're developing or don't want to purchase a professionally-signed key/certificate, you can generate a key, create a certificate and sign it all in one command:
 
     $ npm run gen-key-signed-cert
 
-which will prompt you for certificate attributes (which don't really matter when developing), then create (if it doesn't exist) `.ssl/` with `off-the-record-cert.pem` and `off-the-record-key.pem` inside.
+which will prompt you for certificate attributes (don't really matter when developing), create (if it doesn't exist) `.ssl/` in your installation directory, then save `off-the-record-cert.pem` and `off-the-record-key.pem` inside.
 
-You may optionally provide a string to be prepended their names:
+You may optionally pass a name to `gen-key-signed-cert` that will be used as the name prefix:
 
     $ npm run gen-key-signed-cert myServer
 
-which will name the files `myServer-cert.pem` and `myServer-key.pem`, respectively.
+
+which will generate `myServer-cert.pem` and `myServer-key.pem`.
 
 ## Start
-To start the server, run `off-the-record`
+
+### Installed Globally
 
     $ off-the-record
 
-If you are hosting your own server in production, set `NODE_ENV=production` to make it go harder, better, faster, stronger.
+If you are hosting in a production environment, set `NODE_ENV=production` to make it go harder, better, faster, stronger.
+
+### Installed Locally
+
+    cd /path/to/off-the-record
+    node server.js
 
 ### Enable debug output
-Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display debugging information.  To enable all Off-The-Record debug messages, set export `DEBUG` environment var to `"off-the-record*"` before starting
+Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display all debugging information.  To enable all Off-The-Record debug messages, set `DEBUG` to `"off-the-record*"` before starting
 
     $ DEBUG="off-the-record*" off-the-record
 
 Each file's output is prepended with a unique namespace.  To only enable debug output for the file `lib/transport/http.js`, you would set `DEBUG` to `"off-the-record:server:transport:http"`
 
-    $ DEBUG="off-the-record:server:transport:http" off-the-record
-
 To enable debugging for the all files in `lib/data`, set `DEBUG` to `"off-the-record:server:data*`
 
-    $ DEBUG="off-the-record:server:data*" off-the-record
-
-To enable all debug messages (including those of express, socket.io, mongoose, and several other dependencies) set `DEBUG` to `"*"` or `\*`:
-
-    $ DEBUG="*" off-the-record
-
-or
-
-    $ DEBUG=\* off-the-record
+To enable all debug messages (including those of express, socket.io, and several other dependencies) set `DEBUG` to `"*"` or `\*`:
 
 ## API
 
@@ -221,7 +233,7 @@ I'm sure there are bugs, please help me find/fix them!  If you make valuable con
 See the [Contribution Guide](https://github.com/adminion/contributing) for more information on how to contribute, run tests, and generate coverage reports. _**NOTE** I haven't actually made any test for this repo yet... :D_
 
 ## LICENSE
-Copyright (c) 2014-2015 Jeff Harris
+Copyright (c) 2014-2015 Jeff Harris and contributors
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
