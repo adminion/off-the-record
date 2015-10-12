@@ -36,7 +36,7 @@ See [Installing npm packages globally](https://docs.npmjs.com/getting-started/in
 
 ### Local
 
-If you're looking to develop your own app using off-the-record or make a contribution you should omit the `-g` option to install locally.  
+If you're looking to develop your own app using off-the-record, simply omit the `-g` option to install locally.
 
     $ npm install off-the-record
 
