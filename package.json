@@ -1,14 +1,14 @@
 {
   "name": "off-the-record",
   "description": "Chat for the paranoid..",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Jeff Harris",
     "email": "techjeffharris@gmail.com",
     "website": "http://intangiblehost.net"
   },
   "contributors": [
-    {   
+    {
       "name": "Zane",
       "email": "ydzane@gmail.com"
     },
