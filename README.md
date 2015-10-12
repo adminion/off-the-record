@@ -32,7 +32,7 @@ In production environments, you'll want to install globally
 
     $ npm install -g off-the-record
 
-See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally) for more information.
+See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally).
 
 ### Local
 
@@ -50,11 +50,11 @@ Off the record uses a 3 step configuration process:
 
 2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used.
 
-    $ NODE_ENV=production off-the-record            # "production.json" will be used
+    $ NODE_ENV=production off-the-record # "production.json" will be used
 
 3) Load configuration overrides parsed from the json value of `OTR_CONFIG`, if set.  This allows you to provide additional configuration overrides at runtime after your environment-specific configuration has been applied. 
 
-    $ OTR_CONFIG='{ "serverName": "my-server" }' node off-the-record
+    $ OTR_CONFIG='{ "serverName": "my-server" }' off-the-record
 
 ### Custom Directory
 By default, the configuration directory will be `config/` relative to your installation path.  You may optionally specify another directory via the `OTR_CONFIG_DIR` environment variable.
