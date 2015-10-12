@@ -28,7 +28,7 @@ You will need to have `nodejs` and `mongodb` installed to run the server.  You w
 
 ### Global
 
-Installing off-the-record globally will create a binary that is easy to run from any directory
+In production environments, you'll want to install globally
 
     $ npm install -g off-the-record
 
