@@ -233,7 +233,7 @@ I'm sure there are bugs, please help me find/fix them!  If you make valuable con
 See the [Contribution Guide](https://github.com/adminion/contributing) for more information on how to contribute, run tests, and generate coverage reports. _**NOTE** I haven't actually made any test for this repo yet... :D_
 
 ## LICENSE
-Copyright (c) 2014-2015 Jeff Harris and con
+Copyright (c) 2014-2015 Jeff Harris and contributors
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
