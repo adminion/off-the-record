@@ -26,7 +26,7 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
       |  |   \  \  |  |______  |  |____|  | |  |____|  | |  |   \  \  |  |____|  |
       |__|    \__\ |_________|  \________/   \________/  |__|    \__\ |_________/
 
-            off-the-record server v0.0.5 started! >> https://localhost:1337
+                            v0.0.5 - https://localhost:1337
     ================================================================================
 
 If you would like to contribute, please take a look at our [contribution guide](#contributing).
