@@ -1,22 +1,33 @@
 Off-The-Record 
 ==============
 
-# Chat for the paranoid.. 
+Off-The-Record is private, encrypted messaging system that remembers you and your friends, but not what you were talking about.
 
-A self-hosted volatile messaging server with strict privacy by default that is always hosted over https.
+    $ off-the-record
+    ================================================================================
+        _____     _________   _________       __________   __     __    _________
+       /  _  \   |   ______| |   ______|     |___    ___| |  |   |  |  |   ______|
+      |  / \  |  |  |____    |  |____            |  |     |  |___|  |  |  |_____
+      |  | |  |  |   ____|   |   ____|           |  |     |   ___   |  |   _____|
+      |  | |  |  |  |        |  |                |  |     |  |   |  |  |  |
+      |  \_/  |  |  |        |  |                |  |     |  |   |  |  |  |______
+       \_____/   |__|        |__|                |__|     |__|   |__|  |_________|  
 
-```javascript
-var OffTheRecord = require('./lib/'),
-    server;
+       ________     _________    ________     ________    ________     _________
+      |   __   \   |   ______|  /  ____  \   /  ____  \  |   __   \   |   ____  \ 
+      |  |  \   |  |  |        |  |    |__| |  |    |  | |  |  \   |  |  |    |  |
+      |  |   |  |  |  |        |  |         |  |    |  | |  |   |  |  |  |    |  |
+      |  |__/   |  |  |_____   |  |         |  |    |  | |  |__/   |  |  |    |  |
+      |      __/   |   _____|  |  |         |  |    |  | |      __/   |  |    |  |
+      |     |      |  |        |  |         |  |    |  | |     |      |  |    |  |
+      |  |\  \     |  |        |  |         |  |    |  | |  |\  \     |  |    |  |
+      |  | \  \    |  |        |  |         |  |    |  | |  | \  \    |  |    |  |
+      |  |  \  \   |  |        |  |     __  |  |    |  | |  |  \  \   |  |    |  |
+      |  |   \  \  |  |______  |  |____|  | |  |____|  | |  |   \  \  |  |____|  |
+      |__|    \__\ |_________|  \________/   \________/  |__|    \__\ |_________/
 
-server = new OffTheRecord();
-
-server.on('started', function () {
-    console.log('off-the-record server is running!');
-});
-
-server.start();
-```
+            off-the-record server v0.0.5 started! >> https://localhost:1337
+    ================================================================================
 
 If you would like to contribute, please take a look at our [contribution guide](#contributing).
 
