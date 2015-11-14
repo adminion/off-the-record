@@ -42,4 +42,6 @@ process.on('SIGINT', function () {
   }
 });
 
+console.log('starting %s v%s...', server.env().package.name, server.env().package.version);
+
 server.start();

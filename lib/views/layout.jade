@@ -1,3 +1,6 @@
+- links = links || {};
+- var logged_on = (request.session.passport);
+- if (logged_on) var user = request.session.passport.user;
 doctype html
 html
   head
@@ -20,29 +23,44 @@ html
       #wrapper
         block header
           #header
-            block banner
-              #banner
-                h1=env.package.name
-                h4=env.package.description
-                // this would be a good place for a banner image
+            //- block banner
+            //-   #banner
+            //-     h1=env.package.name
+            //-     h4=env.package.description
+            //-     // this would be a good place for a banner image
+            block breadcrumbs
+              #breadcrumbs
+                // breadcrumbs leave a trail as players navigate the server
+                h3
+                  - // remove everything after and including the '?'
+                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
+                  - // split the string by '/' into an array
+                  - breadcrumbs = breadcrumbs.split('/')
+                  //- always show the main link
+                  a(href='/') #{env.serverName}
+                  - // for each item in the array, ignoring the first since we already did it
+                  - each crumb, id in breadcrumbs
+                    if (id)
+                      if (!!crumb)
+                        | &nbsp;/&nbsp;
+                        - var url = ''
+                        - for (var i=1; i<=id   ; i++)
+                          - url += '/' + breadcrumbs[i]
+                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
+                        a(href=url) #{crumb} 
             block session
               #session
-                if (request.session.passport.user)
+                if (logged_on)
                   span Logged on as 
                     a(href='/profile') #{request.session.passport.user}
-                    | &nbsp;[&nbsp;
                     a(href='/logoff') Logoff
-                    | &nbsp;]&nbsp;
                 else
                   span Not logged on. 
-                    | [&nbsp; 
                     a(href='/logon') Logon 
-                    | &nbsp;|&nbsp;
                     a(href='/register') Register
-                    | &nbsp;]
             block nav
               #nav
-                if (links && request.session.passport.user)
+                if (logged_on)
                   ul#links
                     - var foo = 0;
                     each url, title in links
@@ -51,26 +69,6 @@ html
                         li: a(href=url) #{title}
                       else
                         li: a(href=url) #{title}
-            block breadcrumbs
-              #breadcrumbs
-                // breadcrumbs leave a trail as players navigate the server
-                h4
-                  - // remove everything after and including the '?'
-                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
-                  - // split the string by '/' into an array
-                  - breadcrumbs = breadcrumbs.split('/')
-                  - // for each item in the array
-                  - each crumb, id in breadcrumbs
-                    if (!id)
-                      a(href='/') #{env.serverName}
-                    else
-                      if (!!crumb)
-                        | &nbsp;/&nbsp;
-                        - var url = ''
-                        - for (var i=1; i<=id   ; i++)
-                          - url += '/' + breadcrumbs[i]
-                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
-                        a(href=url) #{crumb} 
         block body
           #body
             block content
