@@ -13,12 +13,14 @@ block content
     h2 Conversations
 
     div#convoInputs
-      button(id='startConvoBtn' class='convoInputs') Start
-      input(id='searchInput' type="search" incremental="incremental" placeholder="search for users..." class='convoInputs')
-      label(id='searchResults' class='convoInputs' for='searchResults') search results
-      ul(id='searchResults' class='convoInputs') 
-      label(id='searchResults' class='convoInputs' for='invitees') invitees
-      ul(id='invitees' class='convoInputs')
       button(id='createConvoBtn' class='convoInputs') Create
+      input(id='searchInput' type="search" incremental="incremental" placeholder="search for users..." class='convoInputs')
+      label(id='resultsLabel' class='convoInputs' for='searchResults') search results
+      ul(id='searchResults' class='convoInputs') 
+      label(id='inviteesLabel' class='convoInputs' for='invitees') invitees
+      ul(id='invitees' class='convoInputs')
+      button(id='startConvoBtn' class='convoInputs') Start
       button(id='cancelConvoBtn' class='convoInputs') Cancel
-    ul#convos No active conversations
+    div#convos
+      label(id='convosLabel' for='convosList') Converstations
+      ul#convosList No active conversations

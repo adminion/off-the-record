@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
-    "postinstall": "bin/gen-config-files.sh",
+    "postinstall": "cd bin/ && ./gen-config-files.sh",
     "start": "node server.js",
     "wheresmyconfig": "bin/wheresmyconfig.sh"
   },
@@ -64,12 +64,13 @@
     "method-override": "2.x",
     "mongoose": "4.x",
     "morgan": "1.x",
-    "passport": "0.2.x",
+    "passport": "0.x",
     "passport-local": "1.x",
     "passport-local-mongoose": "1.x",
     "passport.socketio": "3.x",
     "serve-favicon": "2.x",
     "serve-static": "1.x",
+    "shortid": "2.x",
     "socket.io": "1.x",
     "techjeffharris-utils": "1.x",
     "valid-url": "^1.0.9"
