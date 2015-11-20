@@ -1,77 +1,54 @@
 - links = links || {};
-- var logged_on = (request.session.passport);
+- var logged_on = (request.session.passport && request.session.passport.user);
 - if (logged_on) var user = request.session.passport.user;
 doctype html
 html
   head
     block head
-      meta(name="viewport" content="width=device-width, initial-scale=1")
-      // Bootstrap: Latest compiled and minified CSS
-      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
-      // Bootstrap: Optional theme
-      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
-      title= env.serverName
-      script(src='/scripts/jquery.js')
-      // Bootstrap: Latest compiled and minified JavaScript
-      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+      meta(name="viewport" content="width=device-width, user-scalable=no")
 
-      link(rel="stylesheet", href="/styles/off-the-record.css")
+      //- Bootstrap: Latest compiled and minified CSS
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+      //- Bootstrap: Optional theme
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
+      link(rel="stylesheet" href="/styles/off-the-record.css")
+      link(rel="stylesheet" href="/styles/menu.css")
+
+      script(src='/scripts/jquery.js')
+      //- Bootstrap: Latest compiled and minified JavaScript
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+      script(src="/socket.io/socket.io.js")
+      script(src='/scripts/off-the-record.js')
+      script(src='/scripts/menu.js')
+
+      title= env.serverName
       block scripts
       block styles
   body
     block wrapper
       #wrapper
-        block header
+        #menu
+          #session
+            if (logged_on)
+              div Logged on as 
+                a(href='/profile') #{request.session.passport.user}
+                | .&nbsp;
+                a(href='/logoff') Logoff
+          hr
+          #nav
+            nav
+              ul#links
+                - var foo = 0;
+                each url, title in links
+                  li: a(href=url) #{title}
+        #body(class="animated-wrapper hardware-accelarate" data-state="neutral")
           #header
-            //- block banner
-            //-   #banner
-            //-     h1=env.package.name
-            //-     h4=env.package.description
-            //-     // this would be a good place for a banner image
-            block breadcrumbs
-              #breadcrumbs
-                // breadcrumbs leave a trail as players navigate the server
-                h3
-                  - // remove everything after and including the '?'
-                  - var breadcrumbs = request.originalUrl.replace(/\?.*$/, '')
-                  - // split the string by '/' into an array
-                  - breadcrumbs = breadcrumbs.split('/')
-                  //- always show the main link
-                  a(href='/') #{env.serverName}
-                  - // for each item in the array, ignoring the first since we already did it
-                  - each crumb, id in breadcrumbs
-                    if (id)
-                      if (!!crumb)
-                        | &nbsp;/&nbsp;
-                        - var url = ''
-                        - for (var i=1; i<=id   ; i++)
-                          - url += '/' + breadcrumbs[i]
-                          //- - crumb = crumb.charAt(0).toUpperCase() + crumb.slice(1)
-                        a(href=url) #{crumb} 
-            block session
-              #session
-                if (logged_on)
-                  span Logged on as 
-                    a(href='/profile') #{request.session.passport.user}
-                    a(href='/logoff') Logoff
-                else
-                  span Not logged on. 
-                    a(href='/logon') Logon 
-                    a(href='/register') Register
-            block nav
-              #nav
-                if (logged_on)
-                  ul#links
-                    - var foo = 0;
-                    each url, title in links
-                      if (foo++)
-                        | &nbsp;|&nbsp;
-                        li: a(href=url) #{title}
-                      else
-                        li: a(href=url) #{title}
-        block body
-          #body
-            block content
-              #content
+            if (logged_on)
+              block menuBtn
+                img(id="menuBtn" src='/images/menu.svg')      
+            block pageTitle
+              #pageTitle=env.serverName
+          block content
+            #content
                   
                   

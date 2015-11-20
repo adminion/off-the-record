@@ -1,12 +1,13 @@
 extends layout
 
 block scripts
-  script(src='/socket.io/socket.io.js')
-  script(src='/scripts/off-the-record.js')
   script(src='/scripts/convos.js')
 
 block styles
   link(href='/styles/convos.css' rel="stylesheet" type="text/css")
+
+block pageTitle
+  #pageTitle='Conversations'
 
 block content
   #content

@@ -1,12 +1,13 @@
 extends layout
 
 block scripts
-  script(src="/socket.io/socket.io.js")
-  script(src='/scripts/off-the-record.js')
   script(src='/scripts/search.js')
 block styles
   link(ref='/styles/search.css')
   
+block pageTitle
+  #pageTitle='Search'
+
 block content
   #content
     input(id="search-input" type="search" incremental="incremental" placeholder="search for users" disabled="disabled")
