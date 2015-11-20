@@ -1,12 +1,12 @@
 extends layout
 
 block session
+
+block pageTitle
+  #pageTitle='Register'
+
 block content
   #content
-    h2 Register
-      | &nbsp;[&nbsp;
-      a(href='/logon') Logon
-      | &nbsp;]&nbsp;
     if (err)
       p.err=err
 
@@ -26,3 +26,6 @@ block content
             td: input(type='password', name='verifyPassword', id='verifyPassword')
       p
         input(type='submit', value='Register')
+    p Already registered? 
+      a(href='/logon') Logon
+    

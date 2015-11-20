@@ -1,27 +1,10 @@
 extends layout
-block session
-block nav
 block styles
-  link(ref='/styles/logon.css')
+  link(rel='stylesheet' href='/styles/logon.css')
+
+block pageTitle
+  #pageTitle Logon
 
 block content
   #content
-    h2 Logon
-      | &nbsp;[&nbsp;
-      a(href='/register') Register
-      | &nbsp;]&nbsp;
-    if (error) 
-      p.err=error
-    - var action = '/logon'
-    form(action=action, method='POST')
-      input(type='hidden', name='redir', value=redir)
-      table
-        tbody
-          tr
-            td: label(for='username') Username:
-            td: input(type='text', name='username', id='username')
-          tr
-            td: label(for='password') Password: 
-            td: input(type='password', name='password', id='password')
-      p
-        input(type='submit', value='Logon')
+    include ./forms/logon.jade

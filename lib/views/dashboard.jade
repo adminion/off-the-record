@@ -1,0 +1,14 @@
+extends layout
+
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script(src='/scripts/off-the-record.js')
+  script(src='/scripts/dashboard.js')
+block styles
+  link(rel='stylesheet' href='/styles/profile.css' type="text/css")
+
+block pageTitle
+  #pageTitle='Dashboard'
+
+block content
+  #content

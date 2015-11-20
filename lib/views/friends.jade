@@ -1,11 +1,12 @@
 extends layout
 
 block scripts
-  script(src='/socket.io/socket.io.js')
-  script(src='/scripts/off-the-record.js')
   script(src='/scripts/friends.js')
 block styles
   link(ref='/styles/friends.css')
+
+block pageTitle
+  #pageTitle='Friends'
   
 block content
   #content
