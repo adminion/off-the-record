@@ -1,6 +1,6 @@
 {
   "serverName": "Off-The-Record",
-  "shutdownTimeout": 5000,
+  "shutdownTimeout": 30000,
   "http": {
     "host": "", 
     "port": 443,

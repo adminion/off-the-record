@@ -28,7 +28,7 @@ process.on('SIGINT', function () {
       // tell the server to stop itself.
       server.stop(function () {
         console.log('server stopped.');
-        process.exit();
+        // process.exit();
       });
     // if interrupt is not truthy
     } else {
