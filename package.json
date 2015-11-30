@@ -68,7 +68,7 @@
     "passport-local": "1.x",
     "passport-local-mongoose": "1.x",
     "passport.socketio": "3.x",
-    "serve-favicon": "2.x",
+    "serve-favicon": "^2.3.0",
     "serve-static": "1.x",
     "shortid": "2.x",
     "socket.io": "1.x",

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="UTF-8">
+    <!-- Bootstrap: Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/off-the-record.css">
+    
+    <title>Off-The-Record</title>
+  </head>
+  <body>
+    <div id="wrapper">
+
+      <section id="menu">
+
+        <section id="session">
+          <img src='/images/glyphicons/glyphicons-4-user.png' alt='user glyphicon' />
+          <p><button id='loggedOnUser' class='btn btn-info' data-target-view='profile'></button></p>
+        </section> <!-- session -->
+
+        <nav id="links"> 
+          <ul>
+            <li class='navSpacer'></li>
+          
+            <li id='navHome' class="navBtn" data-target-view='dashboard'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-21-home.png' alt='glyphicons-21-home.png' />
+              </div>
+              <label for='navHome' class='navBtnLabel'>Dashboard</label>
+            </li>
+
+            <li class='navSpacer'></li>
+          
+            <li id='navMessages' class="navBtn" data-target-view='messages'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-245-conversation.png' alt='glyphicons-245-conversation.png'/>
+              </div>
+              <label for='navMessages'>Messages</label>
+            </li>
+          
+            <li class='navSpacer'></li>
+          
+            <li id='navFriends' class="navBtn" data-target-view='friends'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-44-group.png' alt='glyphicons-44-group.png'/>
+              </div>
+              <label for='navFriends'>Friends</label>
+            </li>
+          
+            <li class='navSpacer'></li>
+          
+            <li id='navProfile' class="navBtn" data-target-view='profile'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-4-user.png' alt='glyphicons-4-user.png' />
+              </div>
+              <label for='navProfile'>Profile</label>
+            </li>
+
+            <li class='navSpacer'></li>
+
+            <li id='navLogoff' class='navLogoff'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-389-exit.png' alt='glyphicons-389-exit.png' />
+              </div>
+              <label for='navLogoff'>Logoff</label>
+            </li>
+
+            <li class='navSpacer'></li>
+          
+          </ul>
+        </nav> <!-- links -->
+
+      </section> <!-- menu -->
+
+      <section id="body" class="animated-wrapper hardware-accelarate" data-state="slide-right">
+
+        <header>
+          <button id="menuBtn" class="btn btn-primary glyphicon glyphicon-menu-hamburger"></button>
+          <div id="pageTitle">Off-The-Record</div>
+        </header>
+
+        <section id="pageViews">
+
+          <div id="dashboard" class="pageView">
+            dashboard
+          </div>
+
+          <div id="profile" class="pageView">
+
+            <h1 id='username'>Profile</h1>
+            <button id="editProfile" class="profile btn btn-warning" disabled="disabled">edit</button>
+            <button id="cancelProfile" class="profile btn btn-danger">cancel</button>
+            <button id="saveProfile" class="profile btn btn-success">save</button>
+
+            <div id="profile-info">
+
+              <ul class='list-unstyled'>
+                <li>username: <span id='profileUsername'></span></li>
+                <li>First Name: <span id='profileFirstName'></span></li>
+                <li id='profileLastname'>Last Name: <span id='profileLastName</td>
+                  <td id='lastName' class="editable"></td>
+           <
+
+            <h2>Privacy</h2>
+              <button id="editPrivacy" class="privacy"  disabled="disabled"> edit
+              <button id="cancelPrivacy" class="privacy"> cancel
+              <button id="savePrivacy" class="privacy"> save
+            table id="privacy-table">
+              tbody
+                tr
+                  td View Profile
+                  td id="privacy-profile" class="editable">
+                tr
+                  td Search
+                  td id="privacy-search" class="editable">
+                tr
+                  td Friend Request
+                  td id="privacy-friendRequest" class="editable">
+                tr
+                  td Start Conversation
+                  td id="privacy-startConversation" class="editable">
+            h3 Danger Zone:
+              div: <button id="delete-account"> delete account
+          </div>
+
+          <div id="user" class="pageView">
+            user
+          </div>
+
+          <div id="messages" class="pageView">
+            messages
+          </div>
+
+          <div id="conversation" class="pageView">
+            conversation
+          </div>
+
+          <div id="friends" class="pageView">
+            friends
+          </div>
+
+          <div id="requests" class="pageView">
+            requests
+          </div>
+
+          <div id="online" class="pageView">
+            online
+          </div>
+
+          <div id="search" class="pageView">
+            search
+          </div>
+
+          <div id="groups" class="pageView">
+            groups
+          </div>
+
+        </section> <!-- #pageViews -->
+
+        <footer>
+          <div class='row text-center'>
+            <div class='col-xs-10 col-xs-offset-1'>
+              <p>&copy; 2015 Off-The-Record - All Rights Reserved</p>
+              <p>Icons provided by <a href='glyphicons.com'>GLYPHICONS.com</a> under <a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0</a></p>
+            </div>
+          </div>
+        </footter>
+
+      </section> <!-- #body -->
+    </div> <!-- #wrapper -->
+
+    <script src="/scripts/jquery.js"></script>
+    <!-- Bootstrap: Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/client.js"></script>
+    <script src="/scripts/app.js"></script>
+  </body>
+</html>
