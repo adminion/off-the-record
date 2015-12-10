@@ -1,22 +1,11 @@
 Off-The-Record 
 ==============
 
-# Chat for the paranoid.. 
+Off-The-Record is private, encrypted messaging system that remembers you and your friends, but not what you were talking about.
 
-A self-hosted volatile messaging server with strict privacy by default that is always hosted over https.
-
-```javascript
-var OffTheRecord = require('./lib/'),
-    server;
-
-server = new OffTheRecord();
-
-server.on('started', function () {
-    console.log('off-the-record server is running!');
-});
-
-server.start();
-```
+    $ off-the-record
+    starting off-the-record v0.0.5...
+     --> https://localhost:443
 
 If you would like to contribute, please take a look at our [contribution guide](#contributing).
 
@@ -32,7 +21,7 @@ In production environments, you'll want to install globally
 
     $ npm install -g off-the-record
 
-See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally) for more information.
+See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally).
 
 ### Local
 
@@ -50,11 +39,11 @@ Off the record uses a 3 step configuration process:
 
 2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used.
 
-    $ NODE_ENV=production off-the-record            # "production.json" will be used
+    $ NODE_ENV=production off-the-record # "production.json" will be used
 
 3) Load configuration overrides parsed from the json value of `OTR_CONFIG`, if set.  This allows you to provide additional configuration overrides at runtime after your environment-specific configuration has been applied. 
 
-    $ OTR_CONFIG='{ "serverName": "my-server" }' node off-the-record
+    $ OTR_CONFIG='{ "serverName": "my-server" }' off-the-record
 
 ### Custom Directory
 By default, the configuration directory will be `config/` relative to your installation path.  You may optionally specify another directory via the `OTR_CONFIG_DIR` environment variable.
@@ -66,10 +55,10 @@ By default, the configuration directory will be `config/` relative to your insta
 ```json
 {
   "serverName": "Off-The-Record",
-  "shutdownTimeout": 5000,
+  "shutdownTimeout": 30000,
   "http": {
-    "host": "localhost", 
-    "port": "443",
+    "host": "", 
+    "port": 443,
     "session": {
       "cookie": { "maxAge" : 18000000, "secure": true }, 
       "hash": { "salt": "off-the-record" },
