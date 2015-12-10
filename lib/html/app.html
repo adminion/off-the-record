@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="UTF-8">
+    <!-- <script src="https://10.0.0.9:8009/target/target-script-min.js#otr"></script> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" charset="UTF-8">
     <!-- Bootstrap: Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/off-the-record.css">
-    
+    <link rel="stylesheet" href="/styles/app.css">
+        
     <title>Off-The-Record</title>
   </head>
   <body>
@@ -42,18 +45,18 @@
           
             <li id='navFriends' class="navBtn" data-target-view='friends'>
               <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-44-group.png' alt='glyphicons-44-group.png'/>
+                <img src='/images/glyphicons/glyphicons-89-address-book.png' alt='glyphicons-44-group.png'/>
               </div>
               <label for='navFriends'>Friends</label>
             </li>
           
             <li class='navSpacer'></li>
           
-            <li id='navProfile' class="navBtn" data-target-view='profile'>
+            <li id='navSearch' class="navBtn" data-target-view='search'>
               <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-4-user.png' alt='glyphicons-4-user.png' />
+                <img src='/images/glyphicons/glyphicons-28-search.png' alt='glyphicons-4-user.png' />
               </div>
-              <label for='navProfile'>Profile</label>
+              <label for='navSearch'>Search</label>
             </li>
 
             <li class='navSpacer'></li>
@@ -66,62 +69,68 @@
             </li>
 
             <li class='navSpacer'></li>
+
+            <li id='navOnline' class='navOnline'>
+              <div class='navBtnIcon'>
+                <img src='/images/glyphicons/glyphicons-44-group.png' alt='glyphicons-389-exit.png' />
+              </div>
+              <label for='navOnline'>Online:</label>
+
+              <ul id='onlineFriends'>
+              </ul>
+
+            </li>            
           
           </ul>
         </nav> <!-- links -->
 
       </section> <!-- menu -->
 
-      <section id="body" class="animated-wrapper hardware-accelarate" data-state="slide-right">
+      <header id="header" class="animated-wrapper hardware-accelarate scrollbar" data-state="neutral">
+        <button id="menuBtn" class="btn btn-primary glyphicon glyphicon-menu-hamburger"></button>
+        <div id="pageTitle">Off-The-Record</div>
+      </header> <!-- header -->
 
-        <header>
-          <button id="menuBtn" class="btn btn-primary glyphicon glyphicon-menu-hamburger"></button>
-          <div id="pageTitle">Off-The-Record</div>
-        </header>
-
-        <section id="pageViews">
+      <main id="body" class="animated-wrapper hardware-accelarate" data-state="neutral">
+        <section id="pageViews" class='container'>
 
           <div id="dashboard" class="pageView">
             dashboard
-          </div>
+          </div> <!-- dashboard -->
 
           <div id="profile" class="pageView">
 
             <h1 id='username'>Profile</h1>
-            <button id="editProfile" class="profile btn btn-warning" disabled="disabled">edit</button>
-            <button id="cancelProfile" class="profile btn btn-danger">cancel</button>
-            <button id="saveProfile" class="profile btn btn-success">save</button>
+            <button id="editProfile" class="profile btn btn-warning">edit</button>
+            <button id="cancelProfile" class="profile btn btn-danger editing">cancel</button>
+            <button id="saveProfile" class="profile btn btn-success editing">save</button>
 
             <div id="profile-info">
 
               <ul class='list-unstyled'>
-                <li>username: <span id='profileUsername'></span></li>
-                <li>First Name: <span id='profileFirstName'></span></li>
-                <li id='profileLastname'>Last Name: <span id='profileLastName</td>
-                  <td id='lastName' class="editable"></td>
-           <
+                <li>username: <span id='profile-username'></span></li>
+                <li>First Name: <span id='profile-firstName' class='editable'></span></li>
+                <li>Last Name: <span id='profile-lastName' class='editable'></span></li>
+              </ul>
+            </div>
 
-            <h2>Privacy</h2>
-              <button id="editPrivacy" class="privacy"  disabled="disabled"> edit
-              <button id="cancelPrivacy" class="privacy"> cancel
-              <button id="savePrivacy" class="privacy"> save
-            table id="privacy-table">
-              tbody
-                tr
-                  td View Profile
-                  td id="privacy-profile" class="editable">
-                tr
-                  td Search
-                  td id="privacy-search" class="editable">
-                tr
-                  td Friend Request
-                  td id="privacy-friendRequest" class="editable">
-                tr
-                  td Start Conversation
-                  td id="privacy-startConversation" class="editable">
-            h3 Danger Zone:
-              div: <button id="delete-account"> delete account
-          </div>
+            <h1>Privacy</h1>
+            <button id="editPrivacy" class="privacy btn btn-warning">edit</button>
+            <button id="cancelPrivacy" class="privacy btn btn-danger editing"> cancel</button>
+            <button id="savePrivacy" class="privacy btn btn-success editing"> save</button>
+              
+            <div id='privacy-info'>
+              <ul class='list-unstyled'>
+                <li>View Profile: <span id="privacy-profile" class='editable'></span></li>
+                <li>Search: <span id="privacy-search" class='editable'></span></li>
+                <li>Friend Request: <span id="privacy-friendRequest" class='editable'></span></li>
+                <li>Start Conversation: <span id="privacy-startConversation" class='editable'></span></li>
+              </ul>
+            </div>
+
+            <h1>Danger Zone</h1>
+              <button id="delete-account" class='btn btn-danger'>delete account</button>
+          </div> <!-- profile -->
 
           <div id="user" class="pageView">
             user
@@ -139,6 +148,10 @@
             friends
           </div>
 
+          <div id="search" class="pageView">
+            search
+          </div>
+
           <div id="requests" class="pageView">
             requests
           </div>
@@ -147,31 +160,33 @@
             online
           </div>
 
-          <div id="search" class="pageView">
-            search
-          </div>
-
           <div id="groups" class="pageView">
             groups
           </div>
 
-        </section> <!-- #pageViews -->
-
-        <footer>
-          <div class='row text-center'>
-            <div class='col-xs-10 col-xs-offset-1'>
-              <p>&copy; 2015 Off-The-Record - All Rights Reserved</p>
-              <p>Icons provided by <a href='glyphicons.com'>GLYPHICONS.com</a> under <a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0</a></p>
-            </div>
+          <div id="error" class="pageView">
+            An error occurred... were you fiddling with the url?
           </div>
-        </footter>
 
-      </section> <!-- #body -->
-    </div> <!-- #wrapper -->
+        </section> <!-- pageViews -->
 
-    <script src="/scripts/jquery.js"></script>
+        <footer id='footer'>
+          <!-- <nav class="navbar navbar-default navbar-fixed-bottom"> -->
+          <nav>
+            <div class="container text-center">
+              <span>&copy; 2015 Off-The-Record - All Rights Reserved</span>
+              <span>Icons by <a href='http://www.glyphicons.com'>GLYPHICONS.com</a> (<a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0</a>)</span>
+            </div>
+          </nav>
+        </footer>
+
+      </main> <!-- body -->
+    </div> <!-- wrapper -->
+    
+    <script src="/scripts/jquery-2.1.4.min.js"></script>
+    <script src="/scripts/jquery.mobile-1.4.5.touch-virtual_mouse.min.js"></script>
     <!-- Bootstrap: Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="/scripts/client.js"></script>
     <script src="/scripts/app.js"></script>

@@ -15,12 +15,16 @@
     {
       "name": "Kyle Pasco",
       "email": "kylepasco@gmail.com"
+    },
+    {
+      "name": "Dan Elliot"
     }
   ],
   "scripts": {
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "postinstall": "cd bin/ && ./gen-config-files.sh",
-    "start": "node server.js",
+    "start": "bin/otr.sh",
+    "start-dev": "NODE_ENV=development otr.sh",
     "wheresmyconfig": "bin/wheresmyconfig.sh"
   },
   "main": "lib/index.js",
