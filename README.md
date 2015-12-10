@@ -5,7 +5,7 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
 
     $ off-the-record
     starting off-the-record v0.0.5...
-     --> https://localhost:1337
+     --> https://localhost:443
 
 If you would like to contribute, please take a look at our [contribution guide](#contributing).
 
