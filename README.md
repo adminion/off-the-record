@@ -55,10 +55,10 @@ By default, the configuration directory will be `config/` relative to your insta
 ```json
 {
   "serverName": "Off-The-Record",
-  "shutdownTimeout": 5000,
+  "shutdownTimeout": 30000,
   "http": {
-    "host": "localhost", 
-    "port": "443",
+    "host": "", 
+    "port": 443,
     "session": {
       "cookie": { "maxAge" : 18000000, "secure": true }, 
       "hash": { "salt": "off-the-record" },
