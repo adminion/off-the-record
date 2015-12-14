@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script src="https://10.0.0.9:8009/target/target-script-min.js#otr"></script> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" charset="UTF-8">
     <!-- Bootstrap: Latest compiled and minified CSS -->
@@ -12,8 +11,7 @@
     <title>Off-The-Record</title>
   </head>
   <body>
-    <div id="wrapper">
-
+    <div id="wrapper" class="animated-wrapper hardware-accelarate" data-state="neutral">
       <section id="menu">
 
         <section id="session">
@@ -21,104 +19,97 @@
           <p><button id='loggedOnUser' class='btn btn-info' data-target-view='profile'></button></p>
         </section> <!-- session -->
 
-        <nav id="links"> 
-          <ul>
-            <li class='navSpacer'></li>
-          
-            <li id='navHome' class="navBtn" data-target-view='dashboard'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-21-home.png' alt='glyphicons-21-home.png' />
-              </div>
-              <label for='navHome' class='navBtnLabel'>Dashboard</label>
-            </li>
+        <section id="links">
+          <nav> 
+            <ul>
+              <li class='navSpacer'></li>
+            
+              <li id='navHome' class="navBtn" data-target-view='dashboard'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-21-home.png' alt='glyphicons-21-home.png' />
+                </div>
+                <label for='navHome' class='navBtnLabel'>Dashboard</label>
+              </li>
 
-            <li class='navSpacer'></li>
-          
-            <li id='navMessages' class="navBtn" data-target-view='messages'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-245-conversation.png' alt='glyphicons-245-conversation.png'/>
-              </div>
-              <label for='navMessages'>Messages</label>
-            </li>
-          
-            <li class='navSpacer'></li>
-          
-            <li id='navFriends' class="navBtn" data-target-view='friends'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-89-address-book.png' alt='glyphicons-44-group.png'/>
-              </div>
-              <label for='navFriends'>Friends</label>
-            </li>
-          
-            <li class='navSpacer'></li>
-          
-            <li id='navSearch' class="navBtn" data-target-view='search'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-28-search.png' alt='glyphicons-4-user.png' />
-              </div>
-              <label for='navSearch'>Search</label>
-            </li>
+              <li class='navSpacer'></li>
+            
+              <li id='navMessages' class="navBtn" data-target-view='messages'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-245-conversation.png' alt='glyphicons-245-conversation.png'/>
+                </div>
+                <label for='navMessages'>Messages</label>
+              </li>
+            
+              <li class='navSpacer'></li>
 
-            <li class='navSpacer'></li>
+              <li id='navOnline' class='navBtn' data-target-view='online'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-44-group.png' alt='glyphicons-389-exit.png' />
+                </div>
+                <label for='navOnline'>Online</label>
+              </li>
 
-            <li id='navLogoff' class='navLogoff'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-389-exit.png' alt='glyphicons-389-exit.png' />
-              </div>
-              <label for='navLogoff'>Logoff</label>
-            </li>
+              <li class='navSpacer'></li>
+            
+              <li id='navFriends' class="navBtn" data-target-view='friends'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-89-address-book.png' alt='glyphicons-44-group.png'/>
+                </div>
+                <label for='navFriends'>Friends</label>
+              </li>
+            
+              <li class='navSpacer'></li>
+            
+              <li id='navSearch' class="navBtn" data-target-view='search'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-28-search.png' alt='glyphicons-4-user.png' />
+                </div>
+                <label for='navSearch'>Search</label>
+              </li>
 
-            <li class='navSpacer'></li>
+              <li class='navSpacer'></li>
 
-            <li id='navOnline' class='navOnline'>
-              <div class='navBtnIcon'>
-                <img src='/images/glyphicons/glyphicons-44-group.png' alt='glyphicons-389-exit.png' />
-              </div>
-              <label for='navOnline'>Online:</label>
+              <li id='navLogout' class='navLogout'>
+                <div class='navBtnIcon'>
+                  <img src='/images/glyphicons/glyphicons-389-exit.png' alt='glyphicons-389-exit.png' />
+                </div>
+                <label for='navLogout'>Logout</label>
+              </li>
 
-              <ul id='onlineFriends'>
-              </ul>
-
-            </li>            
-          
-          </ul>
-        </nav> <!-- links -->
+              <li class='navSpacer'></li>            
+            
+            </ul>
+          </nav> 
+        </section> <!-- links -->
 
       </section> <!-- menu -->
 
-      <header id="header" class="animated-wrapper hardware-accelarate scrollbar" data-state="neutral">
-        <button id="menuBtn" class="btn btn-primary glyphicon glyphicon-menu-hamburger"></button>
-        <div id="pageTitle">Off-The-Record</div>
-      </header> <!-- header -->
+      <section id="content" >
+        <header>
+          <button id="menuBtn" class="btn btn-primary glyphicon glyphicon-menu-hamburger"></button>
+          <div id="pageTitle">Off-The-Record</div>
+        </header> <!-- header -->
 
-      <main id="body" class="animated-wrapper hardware-accelarate" data-state="neutral">
-        <section id="pageViews" class='container'>
+        <main id="pageViews" class='container'>
 
-          <div id="dashboard" class="pageView">
-            dashboard
-          </div> <!-- dashboard -->
+          <div id="dashboard" class="pageView">dashboard</div> <!-- dashboard -->
 
           <div id="profile" class="pageView">
 
-            <h1 id='username'>Profile</h1>
-            <button id="editProfile" class="profile btn btn-warning">edit</button>
-            <button id="cancelProfile" class="profile btn btn-danger editing">cancel</button>
-            <button id="saveProfile" class="profile btn btn-success editing">save</button>
+            <h1>Profile</h1>
 
             <div id="profile-info">
-
               <ul class='list-unstyled'>
-                <li>username: <span id='profile-username'></span></li>
                 <li>First Name: <span id='profile-firstName' class='editable'></span></li>
                 <li>Last Name: <span id='profile-lastName' class='editable'></span></li>
               </ul>
             </div>
 
+            <button id="editProfile" class="profile btn btn-warning">edit</button>
+            <button id="cancelProfile" class="profile btn btn-warning editing">cancel</button>
+            <button id="saveProfile" class="profile btn btn-success editing">save</button>
+
             <h1>Privacy</h1>
-            <button id="editPrivacy" class="privacy btn btn-warning">edit</button>
-            <button id="cancelPrivacy" class="privacy btn btn-danger editing"> cancel</button>
-            <button id="savePrivacy" class="privacy btn btn-success editing"> save</button>
-              
             <div id='privacy-info'>
               <ul class='list-unstyled'>
                 <li>View Profile: <span id="privacy-profile" class='editable'></span></li>
@@ -128,50 +119,54 @@
               </ul>
             </div>
 
+            <button id="editPrivacy" class="privacy btn btn-warning">edit</button>
+            <button id="cancelPrivacy" class="privacy btn btn-warning editing"> cancel</button>
+            <button id="savePrivacy" class="privacy btn btn-success editing"> save</button>
+              
             <h1>Danger Zone</h1>
               <button id="delete-account" class='btn btn-danger'>delete account</button>
           </div> <!-- profile -->
 
-          <div id="user" class="pageView">
-            user
-          </div>
+          <div id="user" class="pageView">user</div>
 
-          <div id="messages" class="pageView">
-            messages
-          </div>
+          <div id="messages" class="pageView">messages</div>
 
-          <div id="conversation" class="pageView">
-            conversation
-          </div>
+          <div id="conversation" class="pageView">conversation</div>
 
           <div id="friends" class="pageView">
-            friends
+            <h2>Friends</h2>
+            <ul id="friends_list"></ul>
+            <h2>Requests</h2>
+            <h3>Sent</h3>
+            <ul id="requests_sent"></ul>
+            <h3>Received</h3>
+            <ul id="requests_received"></ul>
           </div>
 
           <div id="search" class="pageView">
-            search
+            <input id="search-input" type="search" incremental="incremental" placeholder="search for users" disabled="disabled" />
+            <button id="search-users", disabled="disabled">Search</button>
+            <h2>Friends:</h2>
+            <ul id="results_friends"></ul>
+
+            <h2>Friends of Friends:</h2>
+            <ul id="results_friends-of-friends"></ul>
+
+            <h2>Non-Friends:</h2>
+            <ul id="results_non-friends"></ul>
           </div>
 
-          <div id="requests" class="pageView">
-            requests
-          </div>
+          <div id="requests" class="pageView">requests</div>
 
-          <div id="online" class="pageView">
-            online
-          </div>
+          <div id="online" class="pageView">online</div>
 
-          <div id="groups" class="pageView">
-            groups
-          </div>
+          <div id="groups" class="pageView">groups</div>
 
-          <div id="error" class="pageView">
-            An error occurred... were you fiddling with the url?
-          </div>
+          <div id="error" class="pageView">An error occurred... were you fiddling with the url?</div>
 
-        </section> <!-- pageViews -->
+        </main> <!-- pageViews -->
 
-        <footer id='footer'>
-          <!-- <nav class="navbar navbar-default navbar-fixed-bottom"> -->
+        <footer>
           <nav>
             <div class="container text-center">
               <span>&copy; 2015 Off-The-Record - All Rights Reserved</span>
@@ -180,7 +175,8 @@
           </nav>
         </footer>
 
-      </main> <!-- body -->
+      </section> <!-- content -->
+    
     </div> <!-- wrapper -->
     
     <script src="/scripts/jquery-2.1.4.min.js"></script>

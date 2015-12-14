@@ -1,18 +1,44 @@
 
-body {
+html, body {
   height: 100%;
-  width: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-nav ul {
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+#menu {
+  background-color: lightgray;
+  display: inline-block;
+  left: -160px;
+  height: 100%;
+  position: absolute;
+  width: 160px;
+}
+
+#session {
+  text-align: center;
+}
+
+#session img {
+  padding: 20px 0 10px 0;
+}
+
+#links nav {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#links ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   font-size: 1.25em;
-}
-
-.hidden {
-  display: none;
 }
 
 .navSpacer {
@@ -20,7 +46,7 @@ nav ul {
   margin: 5px auto;
 }
 
-.navBtn, .navBtn *, .navLogoff, .navLogoff * {
+.navBtn, .navBtn *, .navLogout, .navLogout * {
   cursor: pointer;
 }
 
@@ -36,54 +62,19 @@ nav ul {
   margin: 0 auto;
 }
 
-.pageView {
+#content {
   background: #fff;
-  display: none;
-  position: relative;
+  /*display: inline-block;*/
+  min-height:100%;
   width: 100%;
+  padding-bottom: 60px; /* footer height */
 }
 
-#wrapper {
-  background: #fff;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  position: absolute;
-  overflow-x: hidden;
-}
-
-#menu {
-  background-color: lightgray;
-  display: inline-block;
-  float: left;
-  height: 100%;
-  position: fixed;
-  width: 160px;
-}
-
-#session {
-  text-align: center;
-}
-
-#session img {
-  padding: 20px 0 10px 0;
-}
-
-#links {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-#header {
-  position: fixed;
+header {
   background-color: #00aaff;
   height: 52px;
+  width: 100%;
   padding-left: 1px;
-  z-index: 2;
-}
-
-#header.scrollbar {
-  width: calc(100% - 15px);
 }
 
 #menuBtn { 
@@ -106,34 +97,35 @@ nav ul {
   line-height: 52px;
 }
 
-#body {
-  background: #fff;
-  display: inline-block;
-  min-height: calc(100% - 52px);
-  position: absolute;
-  padding-bottom: 6em;
-  left:0;
-  right: -15px; /* Decrease this value for cross-browser compatibility */
-  top: 52px;
-  /*margin-top: 52px;*/
-}
-
 #pageViews { 
+   /*min-height: 100%;*/
+  padding: 20px;
   overflow-y: auto;
 }
 
-#footer {
-  /*border: 1px solid red;*/
-  background: #eee;
+.pageView {
+  background: #fff;
+  display: none;
+  /*position: relative;*/
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  padding: 10px;
 }
 
-#footer span {
+footer {
+  /*border: 1px solid red;*/
+  background: #eee;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+footer nav { 
+  margin: 10px 0;
+}
+
+footer span {
   display: block;
-  vertical-align: middle;
 }
 
 .hardware-accelarate {
@@ -145,10 +137,6 @@ nav ul {
 }
 
 .animated-wrapper {
-  overflow-x: hidden;
-  /*position: relative;*/
-  width: 100%;
-  z-index: 1;
   -webkit-transition: -webkit-transform .2s ease-in-out;
   -moz-transition: -moz-transform .2s ease-in-out;
   -ms-transition: -ms-transform .2s ease-in-out;
