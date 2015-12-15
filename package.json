@@ -24,7 +24,7 @@
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "postinstall": "cd bin/ && ./gen-config-files.sh",
     "start": "bin/otr.sh",
-    "start-dev": "NODE_ENV=development otr.sh",
+    "start-dev": "bin/otr-dev.sh",
     "wheresmyconfig": "bin/wheresmyconfig.sh"
   },
   "main": "lib/index.js",
@@ -78,5 +78,8 @@
     "socket.io": "1.x",
     "techjeffharris-utils": "1.x",
     "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "babelify": "^7.2.0"
   }
 }

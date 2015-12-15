@@ -1,5 +1,4 @@
 
-# if development, enable debug output and start
-# otherwise, just start the thing
+export NODE_ENV=production
 
-node server.js
+node --harmony_destructuring server.js
