@@ -1,4 +1,4 @@
 
 export NODE_ENV=development
 
-nodemon --harmony_destructuring server.js
+nodemon --harmony_shipping server.js

@@ -15,10 +15,10 @@ html, body {
 #menu {
   background-color: lightgray;
   display: inline-block;
-  left: -160px;
+  left: -200px;
   height: 100%;
   position: absolute;
-  width: 160px;
+  width: 200px;
 }
 
 #session {
@@ -29,9 +29,12 @@ html, body {
   padding: 20px 0 10px 0;
 }
 
-#links nav {
+
+#links {
   padding-left: 10px;
   padding-right: 10px;
+  margin: 0 auto;
+  width: 200px;
 }
 
 #links ul {
@@ -75,6 +78,8 @@ header {
   height: 52px;
   width: 100%;
   padding-left: 1px;
+  position: sticky; 
+  top: 0px;
 }
 
 #menuBtn { 
@@ -152,8 +157,13 @@ footer span {
 }
 
 .animated-wrapper[data-state = "slide-right"] {
-  -webkit-transform: translateX(160px);
-  -moz-transform: translateX(160px);
-  -o-transform: translateX(160px);
-  transform: translateX(160px);
+  -webkit-transform: translateX(200px);
+  -moz-transform: translateX(200px);
+  -o-transform: translateX(200px);
+  transform: translateX(200px);
+}
+
+#search-users {
+  top: 3px;
+  left: 5px;
 }

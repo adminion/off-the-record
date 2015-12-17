@@ -144,8 +144,16 @@
           </div>
 
           <div id="search" class="pageView">
-            <input id="search-input" type="search" incremental="incremental" placeholder="search for users" disabled="disabled" />
-            <button id="search-users", disabled="disabled">Search</button>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input id="search-input" type="search" class="form-control" incremental="incremental" placeholder="Search" disabled="disabled" >
+                  <span class="input-group-btn">
+                    <button id="search-users" class="btn btn-default" type="button" disabled="disabled">Search</button>
+                  </span>
+                </div><!-- /input-group -->
+              </div>
+            </div>
             <h2>Friends:</h2>
             <ul id="results_friends"></ul>
 
@@ -185,6 +193,7 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="/scripts/client.js"></script>
-    <script src="/scripts/app.js"></script>
+    <!-- // <script src="/scripts/app.js"></script> -->
+    <script src="/scripts/otr.js"></script>
   </body>
 </html>
