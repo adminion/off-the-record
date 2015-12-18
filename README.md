@@ -139,9 +139,9 @@ Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](http
 
     $ DEBUG="off-the-record*" off-the-record
 
-Each file's output is prepended with a unique namespace.  To only enable debug output for the file `lib/transport/http.js`, you would set `DEBUG` to `"off-the-record:server:transport:http"`
+Each file's output is prepended with a unique namespace.  To only enable debug output for the file `lib/transport.js`, you would set `DEBUG` to `"off-the-record:transport"`
 
-To enable debugging for the all files in `lib/data`, set `DEBUG` to `"off-the-record:server:data*`
+To enable debugging for the all models in `lib/models`, set `DEBUG` to `"off-the-record:models*`
 
 To enable all debug messages (including those of express, socket.io, and several other dependencies) set `DEBUG` to `"*"` or `\*`:
 
