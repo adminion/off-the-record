@@ -21,18 +21,18 @@
     }
   ],
   "scripts": {
+    "docs": "bin/docs.sh",
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "postinstall": "cd bin/ && ./gen-config-files.sh",
+    "pretest": "bin/pretest.sh",
+    "test": "bin/test.sh",
     "start": "bin/otr.sh",
     "start-dev": "bin/otr-dev.sh",
     "wheresmyconfig": "bin/wheresmyconfig.sh"
   },
   "main": "lib/index.js",
   "bin": "./server.js",
-  "license": {
-    "type": "BSD-3-Clause",
-    "file:": "LICENSE"
-  },
+  "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/adminion/off-the-record.git"
@@ -54,6 +54,7 @@
   ],
   "dependencies": {
     "async": "1.x",
+    "babel-polyfill": "^6.3.14",
     "body-parser": "1.x",
     "browserify": "6.x",
     "connect-flash": "0.x",
@@ -66,6 +67,7 @@
     "friends-of-friends": "3.x",
     "jade": "1.x",
     "method-override": "2.x",
+    "moment": "^2.10.6",
     "mongoose": "4.x",
     "morgan": "1.x",
     "passport": "0.x",

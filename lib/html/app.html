@@ -33,11 +33,11 @@
 
               <li class='navSpacer'></li>
             
-              <li id='navMessages' class="navBtn" data-target-view='messages'>
+              <li id='navConvos' class="navBtn" data-target-view='convos'>
                 <div class='navBtnIcon'>
                   <img src='/images/glyphicons/glyphicons-245-conversation.png' alt='glyphicons-245-conversation.png'/>
                 </div>
-                <label for='navMessages'>Messages</label>
+                <label for='navConvos'>Conversations</label>
               </li>
             
               <li class='navSpacer'></li>
@@ -92,9 +92,9 @@
 
         <main id="pageViews" class='container'>
 
-          <div id="dashboard" class="pageView">dashboard</div> <!-- dashboard -->
+          <section id="dashboard" class="pageView">dashboard</section> <!-- dashboard -->
 
-          <div id="profile" class="pageView">
+          <section id="profile" class="pageView">
 
             <h1>Profile</h1>
 
@@ -124,16 +124,39 @@
             <button id="savePrivacy" class="privacy btn btn-success editing"> save</button>
               
             <h1>Danger Zone</h1>
-              <button id="delete-account" class='btn btn-danger'>delete account</button>
-          </div> <!-- profile -->
+            <button id="delete-account" class='btn btn-danger'>delete account</button>
 
-          <div id="user" class="pageView">user</div>
+          </section> <!-- profile -->
 
-          <div id="messages" class="pageView">messages</div>
+          <section id="user" class="pageView">
+            <h1 id="username-heading"></h1>
+            <ul id="user-info"></ul>
+            <ul id="interaction-buttons-list"></ul>
+          </section> <!-- pageView -->
 
-          <div id="conversation" class="pageView">conversation</div>
+          <section id="convos" class="pageView">
+            <h1>Conversations</h1>
 
-          <div id="friends" class="pageView">
+            <div id="convoInputs">
+              <button id='createConvoBtn' class='convoInputs btn btn-info'>Create</button>
+              <input id="convoSearchInput" type="search" class="form-control convoInputs" incremental="incremental" placeholder="Search" disabled="disabled" >
+              <label id='resultsLabel' class='convoInputs' for='searchResults'>Search Results:</label>
+              <ul id='searchResults' class='convoInputs'></ul>
+              <label id='inviteesLabel' class='convoInputs' for='invitees'>invitees</label>
+              <ul id='invitees' class='convoInputs'></ul>
+              <button id='startConvoBtn' class='convoInputs btn btn-success'>Start</button>
+              <button id='cancelConvoBtn' class='convoInputs btn btn-danger'>Cancel</button>
+            </div>
+
+            <label fid='convosLabel' for='convosList'>Converstations</label>
+            <ul id='convosList'>No active conversations</ul>
+          </section> <!-- convos -->
+
+          <section id="convo" class="pageView">
+            <section id="convoElements"></section>
+          </section>
+
+          <section id="friends" class="pageView">
             <h2>Friends</h2>
             <ul id="friends_list"></ul>
             <h2>Requests</h2>
@@ -141,9 +164,9 @@
             <ul id="requests_sent"></ul>
             <h3>Received</h3>
             <ul id="requests_received"></ul>
-          </div>
+          </section> <!-- friends -->
 
-          <div id="search" class="pageView">
+          <section id="search" class="pageView">
             <div class="row">
               <div class="col-md-6">
                 <div class="input-group">
@@ -162,15 +185,16 @@
 
             <h2>Non-Friends:</h2>
             <ul id="results_non-friends"></ul>
-          </div>
+          </section> <!-- search -->
 
-          <div id="requests" class="pageView">requests</div>
+          <section id="online" class="pageView">
+            <h1>Online Friends</h1>
+            <ul id="onlineFriends"></ul>
+          </section>
 
-          <div id="online" class="pageView">online</div>
+          <section id="groups" class="pageView">groups</section>
 
-          <div id="groups" class="pageView">groups</div>
-
-          <div id="error" class="pageView">An error occurred... were you fiddling with the url?</div>
+          <section id="error" class="pageView">An error occurred... were you fiddling with the url?</section>
 
         </main> <!-- pageViews -->
 
@@ -187,14 +211,13 @@
     
     </div> <!-- wrapper -->
     
-    <script src="https://10.0.0.100:8081/target/target-script-min.js#otr"></script>
+    <!-- // <script src="https://10.0.0.100:8081/target/target-script-min.js#otr"></script> -->
     <script src="/scripts/jquery-2.1.4.min.js"></script>
     <script src="/scripts/jquery.mobile-1.4.5.touch-virtual_mouse.min.js"></script>
     <!-- Bootstrap: Latest compiled and minified JavaScript -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-    <script src="/socket.io/socket.io.js"></script>
-    <!-- // <script src="/scripts/client.js"></script> -->
-    <!-- // <script src="/scripts/app.js"></script> -->
-    <!-- // <script src="/scripts/otr.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.js"></script>
+    <script src="/scripts/client.js"></script>
+    <script src="/scripts/app.js"></script>
   </body>
 </html>

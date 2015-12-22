@@ -7,6 +7,12 @@ html, body {
   overflow-x: hidden;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 #wrapper {
   min-height: 100%;
   position: relative;
@@ -38,11 +44,21 @@ html, body {
 }
 
 #links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   font-size: 1.25em;
 }
+
+.convoInputs {
+  display:none;
+} 
+
+#createConvoBtn {
+  display:block;
+}
+
+#start {
+    padding: 10px;
+}
+
 
 .navSpacer {
   border-top: 1px solid gray;
@@ -133,6 +149,16 @@ footer span {
   display: block;
 }
 
+.convo {
+  display: none;
+}
+
+.chat-bubble {
+  padding: 0 5px;
+  /*height: 25px;
+  width: 25px;*/
+}
+
 .hardware-accelarate {
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
@@ -163,7 +189,7 @@ footer span {
   transform: translateX(200px);
 }
 
-#search-users {
+#search-users, .chatSend {
   top: 3px;
   left: 5px;
 }
