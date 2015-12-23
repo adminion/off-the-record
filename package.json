@@ -47,6 +47,9 @@
     "file",
     "files",
     "https",
+    "message",
+    "messaging",
+    "messenger",
     "off-the-record",
     "private",
     "transfer",
@@ -56,11 +59,10 @@
     "async": "1.x",
     "babel-polyfill": "^6.3.14",
     "body-parser": "1.x",
-    "browserify": "6.x",
     "connect-flash": "0.x",
-    "connect-mongo": "0.x",
+    "connect-mongo": "1.x",
     "cookie-parser": "1.x",
-    "debug": "*",
+    "debug": "2.x",
     "express": "4.x",
     "express-session": "1.x",
     "extend": "3.x",
@@ -72,7 +74,7 @@
     "morgan": "1.x",
     "passport": "0.x",
     "passport-local": "1.x",
-    "passport-local-mongoose": "1.x",
+    "passport-local-mongoose": "3.x",
     "passport.socketio": "3.x",
     "serve-favicon": "^2.3.0",
     "serve-static": "1.x",
@@ -82,6 +84,7 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "babelify": "^7.2.0"
+    "babelify": "^7.2.0",
+    "browserify": "12.x"
   }
 }
