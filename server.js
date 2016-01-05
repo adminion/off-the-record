@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+"use strict";
 
 process.env.OTR_PREFIX = __dirname;
 
@@ -7,7 +7,6 @@ var OffTheRecord = require('./lib/'),
   server,
   stopping;
 
-// if (process)
 Error.stackTraceLimit = Infinity;
 
 server = new OffTheRecord();
@@ -18,7 +17,7 @@ process.on('SIGINT', function () {
   // if we're not already stopping
   if (!stopping) { 
     // if interrupt is truthy (the user has pressed ^C within the last second)
-    // then shutdown the server
+    // then shutdow n the server
     if (interrupt) {
 
       // set the stopping flag to true to indicate that the server is stopping (in case another SIGINT is sent)
@@ -28,7 +27,7 @@ process.on('SIGINT', function () {
       // tell the server to stop itself.
       server.stop(function () {
         console.log('server stopped.');
-        // process.exit();
+        process.exit();
       });
     // if interrupt is not truthy
     } else {
@@ -41,6 +40,8 @@ process.on('SIGINT', function () {
     }
   }
 });
+
+debug('server', server);
 
 console.log('starting %s v%s...', server.env().package.name, server.env().package.version);
 

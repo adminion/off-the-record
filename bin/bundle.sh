@@ -1,0 +1,1 @@
+browserify lib/app.js -t babelify -o lib/static/scripts/app.js -v
