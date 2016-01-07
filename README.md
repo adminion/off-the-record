@@ -7,7 +7,7 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
     starting off-the-record v0.0.5...
      --> https://localhost:443
 
-If you would like to contribute, please take a look at our [contribution guide](#contributing).
+If you would like to contribute, please take a look at our [Contribution Guide][].
 
 ## Install
 
@@ -21,7 +21,7 @@ In production environments, you'll want to install globally
 
     $ npm install -g off-the-record
 
-See [Installing npm packages globally](https://docs.npmjs.com/getting-started/installing-npm-packages-globally).
+See [Installing npm packages globally][].
 
 ### Local
 
@@ -29,13 +29,13 @@ If you're looking to develop your own app using off-the-record, simply omit the 
 
     $ npm install off-the-record
 
-See [Installing npm packages locally](https://docs.npmjs.com/getting-started/installing-npm-packages-locally). 
+See [Installing npm packages locally][]. 
 
 ## Configure
 
 Off the record uses a 3 step configuration process:
 
-1) Load the default configuration (See [Default Configuration](#default-configuration) below)
+1) Load the default configuration (See [Default Configuration][] below)
 
 2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used.
 
@@ -88,7 +88,7 @@ By default, the configuration directory will be `config/` relative to your insta
 
 ### SSL Private Key and Certificate
 
-HTTPS servers require a private key and certificate.  We make it easy to generate a key and self-signed certificate to make development easier (see [instructions](#self-signed) below), but you should purchase a signed certificate from a trusted Certificate Authority if you are using Off-The-Record in the real world.
+HTTPS servers require a private key and certificate.  We make it easy to generate a key and self-signed certificate to make development easier (see [Self-Signed][] below), but you should purchase a signed certificate from a trusted Certificate Authority if you are using Off-The-Record in the real world.
 
 *You are strongly advised to keep your private key and certificate files in a safe place __outside__ of your installation folder unless you're ok with them being deleted by `npm remove`.*
 
@@ -135,7 +135,7 @@ If you are hosting in a production environment, set `NODE_ENV=production` to mak
     node server.js
 
 ### Enable debug output
-Off-The-Record uses [visionmeida's](https://github.com/visionmedia) [debug](https://github.com/visionmedia/debug) to display all debugging information.  To enable all Off-The-Record debug messages, set `DEBUG` to `"off-the-record*"` before starting
+Off-The-Record uses [visionmeida's debug][] to display all debugging information.  To enable all Off-The-Record debug messages, set `DEBUG` to `"off-the-record*"` before starting
 
     $ DEBUG="off-the-record*" off-the-record
 
@@ -148,7 +148,7 @@ To enable all debug messages (including those of express, socket.io, and several
 ## API
 
 ### OffTheRecord
-Exposed by `require('./lib/')`, extends nodejs [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+Exposed by `require('./lib/')`, extends nodejs [EventEmitter][].
 
 ### OffTheRecord()
 Creates a new `OffTheRecord` `Server`.  Works with and without `new`:
@@ -219,7 +219,7 @@ server.on('stopped', function onServerStopped () {
 ## Contributing
 I'm sure there are bugs, please help me find/fix them!  If you make valuable contributions, I'll make you a collaborator :)
 
-See the [Contribution Guide](https://github.com/adminion/contributing) for more information on how to contribute, run tests, and generate coverage reports. _**NOTE** I haven't actually made any test for this repo yet... :D_
+See the [Contribution Guide][] for more information on how to contribute, run tests, and generate coverage reports. _**NOTE** I haven't actually made any test for this repo yet... :D_
 
 ## LICENSE
 Copyright (c) 2014-2015 Jeff Harris and contributors
@@ -234,3 +234,11 @@ Redistribution and use in source and binary forms, with or without modification,
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+[Contribution Guide]: #contributing
+[Installing npm packages globally]: https://docs.npmjs.com/getting-started/installing-npm-packages-globally
+[Installing npm packages locally]: https://docs.npmjs.com/getting-started/installing-npm-packages-locally
+[Default Configuration]: #default-configuration
+[Self-Signed]: #self-signed
+[visionmeida's debug]: https://github.com/visionmedia/debug
+[EventEmitter]: http://nodejs.org/api/events.html#events_class_events_eventemitter

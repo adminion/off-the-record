@@ -25,7 +25,6 @@
     "bundle-watch": "bin/bundle-watch.sh",
     "docs": "bin/docs.sh",
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
-    "postinstall": "cd bin/ && ./gen-config-files.sh",
     "pretest": "bin/pretest.sh",
     "test": "bin/test.sh",
     "start": "bin/otr.sh",

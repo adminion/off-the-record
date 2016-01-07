@@ -1,7 +1,5 @@
 "use strict";
 
-process.env.OTR_PREFIX = __dirname;
-
 var OffTheRecord = require('./lib/'),
   interrupt,
   server,
