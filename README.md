@@ -8,7 +8,7 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
      --> https://localhost:443
 
 [![bitHound Dependencies](https://www.bithound.io/github/adminion/off-the-record/badges/dependencies.svg)](https://www.bithound.io/github/adminion/off-the-record/master/dependencies/npm)
-[![NPM](https://nodei.co/npm/off-the-record.png)](https://nodei.co/npm/off-the-record/)
+[![NPM](https://nodei.co/npm/off-the-record.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/off-the-record/)
 
   If you would like to contribute, please take a look at our [Contribution Guide][].
 
