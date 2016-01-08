@@ -40,7 +40,7 @@ Off the record uses a 3 step configuration process:
 
 1) Load the default configuration (See [Default Configuration][] below)
 
-2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used.
+2) Load configuration overrides from a json file whos' name is the lowercased value of `NODE_ENV`.  If `NODE_ENV` is not set, `development.json` will be used (and silently created if not found).
 
     $ NODE_ENV=production off-the-record # "production.json" will be used
 
