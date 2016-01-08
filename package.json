@@ -68,7 +68,6 @@
     "express-session": "1.x",
     "extend": "3.x",
     "friends-of-friends": "3.x",
-    "jade": "1.x",
     "method-override": "2.x",
     "moment": "^2.10.6",
     "mongoose": "4.x",
