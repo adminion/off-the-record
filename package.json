@@ -69,6 +69,7 @@
     "friends-of-friends": "3.x",
     "moment": "^2.10.6",
     "mongoose": "4.x",
+    "notie": "^2.1.0",
     "passport": "0.x",
     "passport-local-mongoose": "3.x",
     "passport.socketio": "3.x",
