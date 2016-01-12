@@ -1,23 +1,4 @@
-#search-for li {
-    display: block;
-}
-
-#search-for input {
-    display:inline;
-}
-
-#search-for label {
-    display: inline;
-}
-
-#search-criteria li {
-    display: block;
-}
-
-#search-criteria input {
-    display:inline;
-}
-
-#search-criteria label {
-    display: inline;
+#search-users {
+  top: 3px;
+  left: 5px;
 }

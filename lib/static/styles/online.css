@@ -1,0 +1,11 @@
+#online h1 {
+	text-decoration: underline;
+}
+
+#onlineFriends {
+	margin: 5px;
+}
+
+#noOneOnline {
+	display: none;
+}

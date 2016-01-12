@@ -1,4 +1,11 @@
 
+/* import our other css files to make things nice and easy */
+@import "convo.css";
+@import "convos.css";
+@import "online.css";
+@import "profile.css";
+@import "search.css";
+
 html, body {
   height: 100%;
   width: 100%;
@@ -45,20 +52,7 @@ ul {
 
 #links ul {
   font-size: 1.25em;
-}
-
-.convoInputs {
-  display:none;
 } 
-
-#createConvoBtn {
-  display:block;
-}
-
-#start {
-    padding: 10px;
-}
-
 
 .navSpacer {
   border-top: 1px solid gray;
@@ -131,6 +125,13 @@ header {
   width: 100%;
 }
 
+.pageView .content {
+  background-color: #d6dff9;
+  border: 1px solid #d6dff9;
+  border-radius: 10px;
+  padding: 5px;
+}
+
 footer {
   /*border: 1px solid red;*/
   background: #eee;
@@ -189,7 +190,3 @@ footer span {
   transform: translateX(200px);
 }
 
-#search-users, .chatSend {
-  top: 3px;
-  left: 5px;
-}

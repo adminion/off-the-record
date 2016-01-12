@@ -1,0 +1,12 @@
+
+.chatSend {
+  top: 3px;
+  left: 5px;
+}
+
+.chatLog {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	height: 100px;
+	overflow-y: auto;
+}
