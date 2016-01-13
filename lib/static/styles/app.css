@@ -34,6 +34,10 @@ ul {
   width: 200px;
 }
 
+#brand {
+    margin: 0 auto;  
+}
+
 #session {
   text-align: center;
 }
