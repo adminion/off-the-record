@@ -2,6 +2,9 @@
   "name": "off-the-record",
   "description": "Chat for the paranoid..",
   "version": "0.0.12",
+  "engines": {
+    "node": "5.x"
+  },
   "author": {
     "name": "Jeff Harris",
     "email": "techjeffharris@gmail.com",
@@ -79,12 +82,20 @@
     "shortid": "2.x",
     "socket.io": "1.x",
     "techjeffharris-utils": "1.x",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "vantage": "^1.5.2"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "12.x",
-    "eslint": "^1.10.3"
+    "coveralls": "^2.11.8",
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
+    "mocha-mongoose": "^1.2.0",
+    "should": "^8.2.2",
+    "valid-url": "^1.0.9"
   }
 }

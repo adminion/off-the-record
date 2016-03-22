@@ -1,46 +1,15 @@
 "use strict";
 
-var OffTheRecord = require('./lib/'),
-  interrupt,
-  server,
-  stopping;
-
 Error.stackTraceLimit = Infinity;
 
-server = new OffTheRecord();
+let OffTheRecord = require('./lib/');
+  
+let server = new OffTheRecord();
 
-var debug = require('debug')(server.env().context());
-
-process.on('SIGINT', function () {
-  // if we're not already stopping
-  if (!stopping) { 
-    // if interrupt is truthy (the user has pressed ^C within the last second)
-    // then shutdow n the server
-    if (interrupt) {
-
-      // set the stopping flag to true to indicate that the server is stopping (in case another SIGINT is sent)
-      stopping = true;
-      console.log('\nstopping server...');
-
-      // tell the server to stop itself.
-      server.stop(function () {
-        console.log('server stopped.');
-        process.exit();
-      });
-    // if interrupt is not truthy
-    } else {
-      // set interrupt to the ID of the timeout that sets interrupt to undefined after 1 second
-      interrupt = setTimeout(function () {
-        interrupt = undefined;
-      }, 1000);
-
-      console.log('\n(^C again to quit)'); 
-    }
-  }
-});
+let debug = require('debug')(server.env.context());
 
 debug('server', server);
 
-console.log('starting %s v%s...', server.env().package.name, server.env().package.version);
+console.log('starting %s v%s...', server.env.package.name, server.env.package.version);
 
 server.start();

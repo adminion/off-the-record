@@ -1,8 +1,11 @@
 {
   "serverName": "Off-The-Record",
   "shutdownTimeout": 30000,
+  "cli": {
+    "port": 8080
+  },
   "http": {
-    "host": "", 
+    "host": null, 
     "port": 443,
     "session": {
       "cookie": { "maxAge" : 18000000, "secure": true }, 
