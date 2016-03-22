@@ -73,6 +73,7 @@
     "passport": "0.x",
     "passport-local-mongoose": "3.x",
     "passport.socketio": "3.x",
+    "pmx": "^0.6.1",
     "serve-favicon": "^2.3.0",
     "serve-static": "1.x",
     "shortid": "2.x",
