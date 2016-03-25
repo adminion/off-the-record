@@ -1,7 +1,7 @@
 node_modules
 npm-debug.log
-config/development.json
-config/production.json
+config
+!config/default.json
 .ssl/*.pem
 *.sublime-project
 *.sublime-workspace

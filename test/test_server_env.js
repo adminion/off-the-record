@@ -9,7 +9,7 @@ let validURL = require('valid-url');
 let config = require('../lib/config');
 
 module.exports = env => {
-  describe('#env', () => {
+  describe('env', () => {
       
     it('is frozen', () => {
       Object.isFrozen(env).should.be.true;
@@ -148,20 +148,38 @@ module.exports = env => {
       });
 
       it('should return a 2 line string when process.env.DEBUG is falsey', () => {
+
+        let originalDebug
+
+        if (process.env.DEBUG) {
+          originalDebug = process.env.DEBUG
+        }
+        
+        delete process.env.DEBUG
+
         let banner = env.banner();
 
         banner.split('\n').should.have.length(2);  
+
+        if (originalDebug) {
+          process.env.DEBUG = originalDebug
+        }
+
       });
 
       it('should return a 24 line string when process.env.DEBUG is truthy', () => {
+
+        let originalDebug = process.env.DEBUG
         
         process.env.DEBUG = true;
+
         let banner = env.banner();
 
         banner.split('\n').should.have.length(24);
+
+        process.env.DEBUG = originalDebug
+
       });
-
     });
-
   });
 };

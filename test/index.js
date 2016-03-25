@@ -7,10 +7,10 @@
  * 3. App
  */
 
-var test_server = require('./server');
-// var test_client = require('./client');
-// var test_app = require('./app');
+var test_server = require('./test_server');
+var test_client = require('./test_client');
+var test_app = require('./test_app');
 
 test_server();
-// test_client();
-// test_app();
+test_client();
+test_app();
