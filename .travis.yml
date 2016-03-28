@@ -5,6 +5,9 @@ node_js:
   - "0.12"
   - "0.10"
   - "iojs"
+env:
+  - NODE_ENV=test
+  - OTR_CONFIG='{ "http" : {"port" : 1337 } }'
 services:
   - mongodb
 install: 
@@ -12,7 +15,6 @@ install:
   - npm install -g mocha
   - npm install 
 before_script:
-  - sudo apt-get install openssl -y
   - npm run gen-key-signed-cert
   - mocha --version
 after_script:
