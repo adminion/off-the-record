@@ -6,8 +6,9 @@ node_js:
   - "0.10"
   - "iojs"
 env:
-  - NODE_ENV=test
-  - OTR_CONFIG='{ "http" : {"port" : 1337 } }'
+  global: 
+    - NODE_ENV=test
+    - "OTR_CONFIG='{ \"http\" : {\"port\" : 1337 } }'"
 services:
   - mongodb
 install: 
