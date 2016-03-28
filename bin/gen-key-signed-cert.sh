@@ -6,7 +6,9 @@
 #     echo "$0: error: must be root" && exit 2
 # fi
 
-SSL_DIR=".ssl"
+wd=$(pwd)
+
+SSL_DIR="$wd/.ssl"
 
 # if the length of $1 is not zero
 if [ $1 ]
@@ -33,7 +35,7 @@ cert="$SSL_DIR/$serverName-cert.pem"
 echo "generating key $key...";
 openssl genrsa -out $key
 
-subj='/CN=/O=/C='
+subj='/CN=foo/O=bar/C=US'
 
 echo "generating request $csr..."
 openssl req -new -key $key -out $csr -subj $subj
