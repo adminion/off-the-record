@@ -33,8 +33,10 @@ cert="$SSL_DIR/$serverName-cert.pem"
 echo "generating key $key...";
 openssl genrsa -out $key
 
+subj='/CN=/O=/C='
+
 echo "generating request $csr..."
-openssl req -new -key $key -out $csr
+openssl req -new -key $key -out $csr -subj $subj
 
 echo "self-signing certificate $cert..."
 openssl x509 -req -days 9999 -in $csr -signkey $key -out $cert
