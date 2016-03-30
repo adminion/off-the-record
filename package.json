@@ -3,7 +3,8 @@
   "description": "Chat for the paranoid..",
   "version": "0.0.12",
   "engines": {
-    "node": "5.x"
+    "node": "5.x",
+    "node": "4.x"
   },
   "author": {
     "name": "Jeff Harris",
