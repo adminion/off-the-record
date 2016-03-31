@@ -71,7 +71,7 @@
     "express-session": "1.x",
     "extend": "3.x",
     "friends-of-friends": "3.x",
-    "moment": "2.10.6",
+    "moment": "2.12.0",
     "mongoose": "4.x",
     "notie": "2.1.0",
     "passport": "0.x",
