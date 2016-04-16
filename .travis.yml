@@ -16,4 +16,5 @@ before_script:
   - npm run gen-key-signed-cert
   - mocha --version
 after_script:
+  - rm config/test.json
   - istanbul cover --hook-run-in-context ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test && NODE_COVERALLS_DEBUG=1 cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
