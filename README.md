@@ -7,7 +7,9 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
     starting off-the-record v0.0.5...
      --> https://localhost:443
 
-[![NPM](https://nodei.co/npm/off-the-record.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/off-the-record/)
+[![NPM](https://nodei.co/npm/off-the-record.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/off-the-records/)
+
+[![Build Status](https://travis-ci.org/adminion/off-the-record.svg?branch=master)](https://travis-ci.org/adminion/off-the-record)
 
 [![bitHound Dependencies](https://www.bithound.io/github/adminion/off-the-record/badges/dependencies.svg)](https://www.bithound.io/github/adminion/off-the-record/master/dependencies/npm)
 
