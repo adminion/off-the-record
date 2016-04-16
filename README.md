@@ -11,6 +11,9 @@ Off-The-Record is private, encrypted messaging system that remembers you and you
 
 [![Build Status](https://travis-ci.org/adminion/off-the-record.svg?branch=master)](https://travis-ci.org/adminion/off-the-record)
 
+[![Coverage Status](https://coveralls.io/repos/github/adminion/off-the-record/badge.svg?branch=master)](https://coveralls.io/github/adminion/off-the-record?branch=master)
+
+
 [![bitHound Dependencies](https://www.bithound.io/github/adminion/off-the-record/badges/dependencies.svg)](https://www.bithound.io/github/adminion/off-the-record/master/dependencies/npm)
 
   If you would like to contribute, please take a look at our [Contribution Guide][].
