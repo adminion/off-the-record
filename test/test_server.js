@@ -9,6 +9,7 @@ require('should');
 let EventEmitter = require('events').EventEmitter
 
 let test_config = require('./test_server_config')
+let test_data = require('./test_server_data')
 let test_env = require('./test_server_env')
 let test_ssl = require('./test_server_ssl')
 let test_BinaryTransfer = require('./test_server_binary')
@@ -162,6 +163,9 @@ module.exports = function () {
 
     // #config run the tests for the config module
     test_config()
+
+    // #data run the tests for the data module
+    test_data(server)
 
     // #env run the tests for environment module
     test_env(server.env);
