@@ -43,19 +43,19 @@ module.exports = function (server) {
       }
 
       function dropUsers (next) {
-        data.user.remove({}, next)
+        data.User.remove({}, next)
       }
 
       function dropFriendships (next) {
-        data.user.Friendship.remove({}, next)
+        data.User.Friendship.remove({}, next)
       }
 
       function dropConvos (next) {
-        data.conversation.remove({}, next)
+        data.Conversation.remove({}, next)
       }
 
       function addConvos (next) {
-        data.conversation.create({
+        data.Conversation.create({
           starter: users.jeff._id, 
           ivitees: [users.zane._id, users.kyle._id]
         }, next)
@@ -63,7 +63,7 @@ module.exports = function (server) {
 
       function addUsers (next) {
         async.each(usernames, function (user, done) {
-          new data.user({username: user}).save((err, savedUser) => {
+          new data.User({username: user}).save((err, savedUser) => {
             users[user] = savedUser
             done(err)
           })
@@ -95,21 +95,21 @@ module.exports = function (server) {
       data.should.be.an.instanceof(OffTheRecord_data)
     })
 
-    describe('#user', function () {
-      let user = data.user
+    describe('#User', function () {
+      let User = data.User
 
       // console.log('user.prototype', user.prototype)
 
       it('is a Function named "model"', function () {
-        user.should.be.a.Function
-        user.name.should.equal('model')
+        User.should.be.a.Function
+        User.name.should.equal('model')
       })
 
       // describe('#')
 
     })
 
-    describe('#conversation', function () {})
+    describe('#Conversation', function () {})
     describe('#privacy', function () {})
 
     describe('#start', function () {})
