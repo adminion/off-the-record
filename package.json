@@ -27,7 +27,7 @@
   "scripts": {
     "bundle": "bin/bundle.sh",
     "bundle-watch": "bin/bundle-watch.sh",
-    "coverage": "bin/coverage.sh",
+    "coverage": "NODE_ENV=test bin/coverage.sh",
     "docs": "bin/docs.sh",
     "gen-key-signed-cert": "bin/gen-key-signed-cert.sh",
     "test": "NODE_ENV=test mocha",

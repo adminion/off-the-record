@@ -4,6 +4,8 @@ require('should')
 
 let path = require('path')
 
+let async = require('async')
+
 module.exports = function (server) {
 
   let data = server.data
@@ -20,14 +22,69 @@ module.exports = function (server) {
   })
 
   describe('#data', function () {
+    let usernames = ['jeff', 'zane', 'kyle']
+    let users = {}
 
     beforeEach(function (done) {
 
-      server.start(() => {
-        data.user.remove({}, function () {
-          data.user.create({ username: 'jeff' }, done)
-        })
-      })
+      async.series([
+        startServer, 
+        dropConvos,
+        dropFriendships,
+        dropUsers,
+        addUsers, 
+        addConvos,
+        sendRequests,
+        acceptRequest
+      ], done)
+
+      function startServer (next) {
+        server.start(next)
+      }
+
+      function dropUsers (next) {
+        data.user.remove({}, next)
+      }
+
+      function dropFriendships (next) {
+        data.user.Friendship.remove({}, next)
+      }
+
+      function dropConvos (next) {
+        data.conversation.remove({}, next)
+      }
+
+      function addConvos (next) {
+        data.conversation.create({
+          starter: users.jeff._id, 
+          ivitees: [users.zane._id, users.kyle._id]
+        }, next)
+      }
+
+      function addUsers (next) {
+        async.each(usernames, function (user, done) {
+          new data.user({username: user}).save((err, savedUser) => {
+            users[user] = savedUser
+            done(err)
+          })
+        }, next)
+      }
+
+      function sendRequests (next) {
+        async.parallel({
+          jeffToZane: function (done) {
+            users.jeff.friendRequest(users.zane._id, done)
+          },
+          jeffToKyle: function (done) {
+            users.jeff.friendRequest(users.kyle._id, done)
+          }
+        }, next)
+      }
+
+      function acceptRequest (next) {
+        users.zane.acceptRequest(users.jeff._id, next)
+      }
+
     })
 
     afterEach(function (done) {
